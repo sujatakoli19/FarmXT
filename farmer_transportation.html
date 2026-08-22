@@ -1263,3 +1263,390 @@ function confirmTransportation(
 
     // =================================================
     // UPDATE STATUS
+    // =================================================
+
+    selected.status =
+        "Confirmed";
+
+    selected.confirmedAt =
+        new Date().toLocaleString();
+
+    selected.confirmedByFarmer =
+        true;
+
+
+    // =================================================
+    // SAVE TRANSPORTATION
+    // =================================================
+
+    localStorage.setItem(
+        "farmXTTransportation",
+        JSON.stringify(
+            transportation
+        )
+    );
+
+
+    // =================================================
+    // UPDATE RELATED INTEREST
+    // =================================================
+
+    let interests =
+        JSON.parse(
+            localStorage.getItem(
+                "bulkBuyerInterests"
+            )
+        ) || [];
+
+
+    let relatedInterest =
+        interests.find(function(interest) {
+
+            return String(interest.id) ===
+                   String(selected.interestId);
+
+        });
+
+
+    if (relatedInterest) {
+
+        relatedInterest.transportationStatus =
+            "Confirmed";
+
+        relatedInterest.transportationConfirmedAt =
+            new Date().toLocaleString();
+
+    }
+
+
+    localStorage.setItem(
+        "bulkBuyerInterests",
+        JSON.stringify(
+            interests
+        )
+    );
+
+
+    alert(
+        "✅ Transportation confirmed successfully!"
+    );
+
+
+    loadTransportation();
+
+}
+
+
+// =====================================================
+// MARK VEHICLE DISPATCHED
+// =====================================================
+
+function markDispatched(
+    transportationId
+) {
+
+    let transportation =
+        JSON.parse(
+            localStorage.getItem(
+                "farmXTTransportation"
+            )
+        ) || [];
+
+
+    let selected =
+        transportation.find(function(item) {
+
+            return String(item.id) ===
+                   String(transportationId);
+
+        });
+
+
+    if (!selected) {
+
+        alert(
+            "❌ Transportation arrangement not found."
+        );
+
+        return;
+
+    }
+
+
+    let confirmation =
+        confirm(
+            "Has the vehicle been dispatched?"
+        );
+
+
+    if (!confirmation) {
+
+        return;
+
+    }
+
+
+    selected.deliveryStatus =
+        "Dispatched";
+
+    selected.dispatchedAt =
+        new Date().toLocaleString();
+
+
+    localStorage.setItem(
+        "farmXTTransportation",
+        JSON.stringify(
+            transportation
+        )
+    );
+
+
+    alert(
+        "🚛 Vehicle marked as dispatched!"
+    );
+
+
+    loadTransportation();
+
+}
+
+
+// =====================================================
+// MARK IN TRANSIT
+// =====================================================
+
+function markInTransit(
+    transportationId
+) {
+
+    let transportation =
+        JSON.parse(
+            localStorage.getItem(
+                "farmXTTransportation"
+            )
+        ) || [];
+
+
+    let selected =
+        transportation.find(function(item) {
+
+            return String(item.id) ===
+                   String(transportationId);
+
+        });
+
+
+    if (!selected) {
+
+        alert(
+            "❌ Transportation arrangement not found."
+        );
+
+        return;
+
+    }
+
+
+    let confirmation =
+        confirm(
+            "Has the vehicle started the journey?"
+        );
+
+
+    if (!confirmation) {
+
+        return;
+
+    }
+
+
+    selected.deliveryStatus =
+        "In Transit";
+
+    selected.inTransitAt =
+        new Date().toLocaleString();
+
+
+    localStorage.setItem(
+        "farmXTTransportation",
+        JSON.stringify(
+            transportation
+        )
+    );
+
+
+    alert(
+        "📍 Shipment marked as In Transit!"
+    );
+
+
+    loadTransportation();
+
+}
+
+
+// =====================================================
+// MARK DELIVERED
+// =====================================================
+
+function markDelivered(
+    transportationId
+) {
+
+    let transportation =
+        JSON.parse(
+            localStorage.getItem(
+                "farmXTTransportation"
+            )
+        ) || [];
+
+
+    let selected =
+        transportation.find(function(item) {
+
+            return String(item.id) ===
+                   String(transportationId);
+
+        });
+
+
+    if (!selected) {
+
+        alert(
+            "❌ Transportation arrangement not found."
+        );
+
+        return;
+
+    }
+
+
+    let confirmation =
+        confirm(
+            "Has the crop been delivered successfully?"
+        );
+
+
+    if (!confirmation) {
+
+        return;
+
+    }
+
+
+    selected.deliveryStatus =
+        "Delivered";
+
+    selected.deliveredAt =
+        new Date().toLocaleString();
+
+
+    localStorage.setItem(
+        "farmXTTransportation",
+        JSON.stringify(
+            transportation
+        )
+    );
+
+
+    // =================================================
+    // UPDATE RELATED INTEREST
+    // =================================================
+
+    let interests =
+        JSON.parse(
+            localStorage.getItem(
+                "bulkBuyerInterests"
+            )
+        ) || [];
+
+
+    let relatedInterest =
+        interests.find(function(interest) {
+
+            return String(interest.id) ===
+                   String(selected.interestId);
+
+        });
+
+
+    if (relatedInterest) {
+
+        relatedInterest.deliveryStatus =
+            "Delivered";
+
+        relatedInterest.deliveredAt =
+            new Date().toLocaleString();
+
+    }
+
+
+    localStorage.setItem(
+        "bulkBuyerInterests",
+        JSON.stringify(
+            interests
+        )
+    );
+
+
+    alert(
+        "📦 Delivery marked successfully!"
+    );
+
+
+    loadTransportation();
+
+}
+
+
+// =====================================================
+// LOGOUT
+// =====================================================
+
+function logout(event) {
+
+    event.preventDefault();
+
+
+    localStorage.removeItem(
+        "userType"
+    );
+
+
+    localStorage.removeItem(
+        "currentFarmer"
+    );
+
+
+    localStorage.removeItem(
+        "currentClient"
+    );
+
+
+    alert(
+        "Logged Out Successfully!"
+    );
+
+
+    window.location.href =
+        "final.html";
+
+}
+
+
+// =====================================================
+// INITIALIZE
+// =====================================================
+
+if (farmer) {
+
+    loadTransportation();
+
+}
+
+</script>
+
+
+</body>
+
+</html>      
