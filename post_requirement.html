@@ -1,0 +1,682 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Post Requirement | FarmXT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    background:linear-gradient(
+        135deg,
+        #14001f,
+        #2d014d,
+        #4b0082,
+        #6a0dad
+    );
+
+    color:white;
+
+    padding:40px 20px;
+
+}
+
+
+/* ===== CONTAINER ===== */
+
+.container{
+
+    width:100%;
+
+    max-width:750px;
+
+    margin:auto;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:25px;
+
+    padding:35px;
+
+    box-shadow:
+        0 0 35px rgba(162,89,255,.5);
+
+}
+
+
+/* ===== LOGO ===== */
+
+.logo{
+
+    display:block;
+
+    width:90px;
+
+    height:90px;
+
+    margin:0 auto 20px;
+
+    padding:7px;
+
+    border-radius:50%;
+
+    background:white;
+
+    box-shadow:
+        0 0 20px #a855f7;
+
+}
+
+
+/* ===== HEADING ===== */
+
+h1{
+
+    text-align:center;
+
+    font-size:34px;
+
+    margin-bottom:10px;
+
+}
+
+.subtitle{
+
+    text-align:center;
+
+    color:#ead5ff;
+
+    line-height:1.7;
+
+    margin-bottom:30px;
+
+}
+
+
+/* ===== FORM ===== */
+
+.form-group{
+
+    margin-bottom:20px;
+
+}
+
+
+label{
+
+    display:block;
+
+    color:#ead5ff;
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+}
+
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    border:1px solid rgba(255,255,255,.2);
+
+    background:rgba(255,255,255,.08);
+
+    color:white;
+
+    outline:none;
+
+    font-size:15px;
+
+}
+
+
+input::placeholder,
+textarea::placeholder{
+
+    color:#d8c8f0;
+
+}
+
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    border:1px solid #d946ef;
+
+    box-shadow:
+        0 0 15px #c026d3;
+
+}
+
+
+select option{
+
+    color:black;
+
+}
+
+
+textarea{
+
+    min-height:130px;
+
+    resize:vertical;
+
+}
+
+
+/* ===== BUTTONS ===== */
+
+.buttons{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:25px;
+
+}
+
+
+.btn{
+
+    flex:1;
+
+    padding:14px 20px;
+
+    border:none;
+
+    border-radius:30px;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    background:linear-gradient(
+        90deg,
+        #7e22ce,
+        #9333ea,
+        #c026d3
+    );
+
+    transition:.3s;
+
+}
+
+
+.btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 0 20px #d946ef;
+
+}
+
+
+.back-btn{
+
+    background:rgba(255,255,255,.12);
+
+    border:1px solid rgba(255,255,255,.2);
+
+}
+
+
+/* ===== NOTE ===== */
+
+.note{
+
+    margin-top:25px;
+
+    padding:18px;
+
+    border-left:5px solid #c084fc;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.06);
+
+    color:#ead5ff;
+
+    line-height:1.7;
+
+}
+
+
+.note strong{
+
+    color:#facc15;
+
+}
+
+
+/* ===== MOBILE ===== */
+
+@media(max-width:600px){
+
+    .container{
+
+        padding:25px 20px;
+
+    }
+
+    .buttons{
+
+        flex-direction:column;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- LOGO -->
+
+    <img
+        src="logo.jpg"
+        class="logo"
+        alt="FarmXT Logo">
+
+
+    <!-- HEADING -->
+
+    <h1>
+        📋 Post Crop Requirement
+    </h1>
+
+
+    <p class="subtitle">
+
+        Tell FarmXT farmers what crops and quantities
+        your business needs.
+
+    </p>
+
+
+
+    <!-- FORM -->
+
+    <form id="requirementForm">
+
+
+        <!-- CROP -->
+
+        <div class="form-group">
+
+            <label>
+                🌾 Crop Needed
+            </label>
+
+            <input
+                type="text"
+                id="cropNeeded"
+                placeholder="Example: Wheat, Rice, Tomato"
+                required>
+
+        </div>
+
+
+
+        <!-- QUANTITY -->
+
+        <div class="form-group">
+
+            <label>
+                📦 Quantity Required
+            </label>
+
+            <input
+                type="text"
+                id="quantity"
+                placeholder="Example: 500 Kg, 2 Tons"
+                required>
+
+        </div>
+
+
+
+        <!-- DELIVERY LOCATION -->
+
+        <div class="form-group">
+
+            <label>
+                📍 Delivery Location
+            </label>
+
+            <input
+                type="text"
+                id="deliveryLocation"
+                placeholder="Enter delivery location"
+                required>
+
+        </div>
+
+
+
+        <!-- REQUIRED DATE -->
+
+        <div class="form-group">
+
+            <label>
+                📅 Required Date
+            </label>
+
+            <input
+                type="date"
+                id="deliveryDate"
+                required>
+
+        </div>
+
+
+
+        <!-- REQUIREMENT DETAILS -->
+
+        <div class="form-group">
+
+            <label>
+                📝 Requirement Details
+            </label>
+
+            <textarea
+                id="requirement"
+                placeholder="Describe quality, packaging, delivery requirements, etc."
+                required></textarea>
+
+        </div>
+
+
+
+        <!-- BUTTONS -->
+
+        <div class="buttons">
+
+
+            <a
+                href="bulk_buyer_dashboard.html"
+                class="btn back-btn">
+
+                ← Back
+
+            </a>
+
+
+            <button
+                type="submit"
+                class="btn">
+
+                📢 Post Requirement
+
+            </button>
+
+
+        </div>
+
+
+    </form>
+
+
+
+    <!-- NOTE -->
+
+    <div class="note">
+
+        <strong>Privacy:</strong>
+
+        Your requirement will be available to
+        eligible FarmXT farmers. Your mobile number
+        and other private account information will
+        not be displayed on the farmer requirement
+        listing.
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+
+// =====================================================
+// CHECK BULK BUYER LOGIN
+// =====================================================
+
+let buyer = JSON.parse(
+    localStorage.getItem("currentBulkBuyer")
+);
+
+
+if(!buyer){
+
+    alert(
+        "Please login as a Bulk Buyer first."
+    );
+
+    window.location.href =
+        "bulk_buyer_login.html";
+
+}
+
+
+
+// =====================================================
+// SET MINIMUM DATE
+// =====================================================
+
+let today =
+    new Date().toISOString().split("T")[0];
+
+
+document.getElementById(
+    "deliveryDate"
+).setAttribute(
+    "min",
+    today
+);
+
+
+
+// =====================================================
+// POST REQUIREMENT
+// =====================================================
+
+document
+.getElementById("requirementForm")
+.addEventListener(
+    "submit",
+    function(event){
+
+        event.preventDefault();
+
+
+        if(!buyer){
+
+            alert(
+                "Please login again."
+            );
+
+            return;
+
+        }
+
+
+
+        // =============================================
+        // GET FORM VALUES
+        // =============================================
+
+        let cropNeeded =
+            document
+            .getElementById("cropNeeded")
+            .value
+            .trim();
+
+
+        let quantity =
+            document
+            .getElementById("quantity")
+            .value
+            .trim();
+
+
+        let deliveryLocation =
+            document
+            .getElementById("deliveryLocation")
+            .value
+            .trim();
+
+
+        let deliveryDate =
+            document
+            .getElementById("deliveryDate")
+            .value;
+
+
+        let requirement =
+            document
+            .getElementById("requirement")
+            .value
+            .trim();
+
+
+
+        // =============================================
+        // GET EXISTING REQUIREMENTS
+        // =============================================
+
+        let requirements =
+            JSON.parse(
+                localStorage.getItem(
+                    "bulkBuyerRequirements"
+                )
+            ) || [];
+
+
+
+        // =============================================
+        // CREATE REQUIREMENT
+        // =============================================
+
+        let newRequirement = {
+
+            id:
+                Date.now(),
+
+            buyerId:
+                buyer.id,
+
+            businessName:
+                buyer.businessName,
+
+            cropNeeded:
+                cropNeeded,
+
+            quantity:
+                quantity,
+
+            deliveryLocation:
+                deliveryLocation,
+
+            deliveryDate:
+                deliveryDate,
+
+            requirement:
+                requirement,
+
+            status:
+                "Open",
+
+            createdAt:
+                new Date().toLocaleString()
+
+        };
+
+
+
+        // =============================================
+        // SAVE REQUIREMENT
+        // =============================================
+
+        requirements.push(
+            newRequirement
+        );
+
+
+        localStorage.setItem(
+            "bulkBuyerRequirements",
+            JSON.stringify(requirements)
+        );
+
+
+
+        // =============================================
+        // SUCCESS
+        // =============================================
+
+        alert(
+            "Requirement posted successfully!"
+        );
+
+
+        window.location.href =
+            "bulk_buyer_dashboard.html";
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Payment | FarmXT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#14001f,#2d014d,#4b0082,#6a0dad);
+min-height:100vh;
+color:white;
+}
+.connection-section{
+
+display:flex;
+justify-content:center;
+align-items:center;
+padding:60px 20px;
+
+}
+
+.connection-card{
+
+width:700px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.15);
+border-radius:25px;
+padding:40px;
+box-shadow:0 0 30px rgba(162,89,255,.4);
+
+}
+
+.connection-card h1{
+
+text-align:center;
+margin-bottom:15px;
+
+}
+
+.connection-card p{
+
+text-align:center;
+margin-bottom:30px;
+color:#ead5ff;
+
+}
+
+.connection-card label{
+
+display:block;
+margin-bottom:8px;
+font-weight:bold;
+color:#ead5ff;
+
+}
+
+.connection-card input,
+.connection-card textarea{
+
+width:100%;
+padding:14px;
+margin-bottom:20px;
+border-radius:12px;
+border:1px solid rgba(255,255,255,.2);
+background:rgba(255,255,255,.12);
+color:white;
+outline:none;
+
+}
+
+.connection-card textarea{
+
+height:150px;
+resize:none;
+
+}
+
+.connection-card input:focus,
+.connection-card textarea:focus{
+
+border:1px solid #d946ef;
+box-shadow:0 0 15px #c026d3;
+
+}
+
+.connection-card button{
+
+width:100%;
+padding:15px;
+border:none;
+border-radius:30px;
+background:linear-gradient(90deg,#7e22ce,#9333ea,#c026d3);
+color:white;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+
+}
+
+.connection-card button:hover{
+
+transform:translateY(-3px);
+box-shadow:0 0 20px #d946ef;
+
+}
+</style>
+
+</head>
+
+<body>
+<section class="connection-section">
+
+<div class="connection-card">
+
+<h1>🤝 Direct Connection</h1>
+
+<p>Send your enquiry directly to the farmer.</p>
+
+<form id="contactForm">
+
+<label>Your Name</label>
+<input type="text" placeholder="Enter your name" required>
+
+<label>Mobile Number</label>
+<input type="tel"
+maxlength="10"
+placeholder="Enter mobile number"
+required>
+
+<label>Subject</label>
+<input type="text" placeholder="Enter subject" required>
+
+<label>Message</label>
+<textarea placeholder="Write your message..." required></textarea>
+
+<button type="submit">Send Message</button>
+
+</form>
+
+</div>
+
+</section>
+<script>
+
+document.getElementById("contactForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+alert("Your enquiry has been sent successfully!");
+
+this.reset();
+
+});
+
+</script>
+</body>
+
+</html>

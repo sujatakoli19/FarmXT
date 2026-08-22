@@ -1,0 +1,1912 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Farmer Dashboard | FarmXT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:linear-gradient(
+        135deg,
+        #14001f,
+        #2d014d,
+        #4b0082,
+        #6a0dad
+    );
+
+    min-height:100vh;
+
+    color:white;
+
+}
+
+
+/* ===== NAVBAR ===== */
+
+.navbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px 8%;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(255,255,255,.15);
+
+}
+
+.logo-section{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.logo{
+
+    width:60px;
+
+    height:60px;
+
+    background:white;
+
+    padding:5px;
+
+    border-radius:50%;
+
+}
+
+.logo-section h2{
+
+    font-size:30px;
+
+}
+
+nav{
+
+    display:flex;
+
+    gap:25px;
+
+    align-items:center;
+
+}
+
+nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+nav a:hover{
+
+    color:#facc15;
+
+}
+
+.logout{
+
+    padding:10px 18px;
+
+    border-radius:25px;
+
+    background:linear-gradient(
+        90deg,
+        #7e22ce,
+        #9333ea,
+        #c026d3
+    );
+
+}
+
+
+/* ===== HERO ===== */
+
+.hero{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:70px 8%;
+
+    gap:60px;
+
+}
+
+.hero-text{
+
+    flex:1;
+
+}
+
+.hero-text h1{
+
+    font-size:55px;
+
+    margin-bottom:20px;
+
+    color:white;
+
+}
+
+.hero-text p{
+
+    font-size:20px;
+
+    line-height:1.8;
+
+    color:#ead5ff;
+
+    margin-bottom:35px;
+
+}
+
+.hero-image{
+
+    flex:1;
+
+    text-align:center;
+
+}
+
+.hero-image img{
+
+    width:100%;
+
+    max-width:500px;
+
+    border-radius:25px;
+
+    box-shadow:
+        0 0 35px rgba(162,89,255,.5);
+
+}
+
+.hero-buttons{
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.btn{
+
+    text-decoration:none;
+
+    padding:15px 35px;
+
+    border-radius:30px;
+
+    font-weight:bold;
+
+    color:white;
+
+    background:linear-gradient(
+        90deg,
+        #7e22ce,
+        #9333ea,
+        #c026d3
+    );
+
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 0 20px #d946ef;
+
+}
+
+.secondary{
+
+    background:transparent;
+
+    border:2px solid #c084fc;
+
+}
+
+
+/* ===== QUICK ACTIONS ===== */
+
+.quick-actions{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(260px,1fr));
+
+    gap:30px;
+
+    padding:60px 8%;
+
+}
+
+.card{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    box-shadow:
+        0 0 25px rgba(162,89,255,.3);
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 0 35px #d946ef;
+
+}
+
+.card h2{
+
+    color:white;
+
+    margin-bottom:15px;
+
+}
+
+.card p{
+
+    color:#ead5ff;
+
+    line-height:1.7;
+
+    margin-bottom:20px;
+
+}
+
+.card a{
+
+    display:inline-block;
+
+    padding:12px 25px;
+
+    border-radius:25px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    color:white;
+
+    background:linear-gradient(
+        90deg,
+        #7e22ce,
+        #9333ea,
+        #c026d3
+    );
+
+}
+
+
+/* ===== TRANSPORTATION SECTION ===== */
+
+.transport-section{
+
+    padding:20px 8% 60px;
+
+}
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.section-title h2{
+
+    font-size:34px;
+
+    margin-bottom:10px;
+
+    color:white;
+
+}
+
+.section-title p{
+
+    color:#ead5ff;
+
+}
+
+
+.transport-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(300px,1fr));
+
+    gap:25px;
+
+}
+
+.transport-card{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:
+        0 0 25px rgba(162,89,255,.3);
+
+    transition:.3s;
+
+}
+
+.transport-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 0 30px #d946ef;
+
+}
+
+.transport-card h3{
+
+    color:#facc15;
+
+    margin-bottom:18px;
+
+    font-size:22px;
+
+}
+
+.transport-detail{
+
+    color:#ead5ff;
+
+    margin:10px 0;
+
+    line-height:1.6;
+
+}
+
+.transport-detail strong{
+
+    color:white;
+
+}
+
+.transport-status{
+
+    display:inline-block;
+
+    margin-top:15px;
+
+    padding:7px 15px;
+
+    border-radius:20px;
+
+    background:rgba(20,184,166,.18);
+
+    color:#5eead4;
+
+    font-weight:bold;
+
+    font-size:13px;
+
+}
+
+.transport-button{
+
+    width:100%;
+
+    margin-top:18px;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:linear-gradient(
+        90deg,
+        #059669,
+        #10b981,
+        #22c55e
+    );
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.transport-button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 0 20px #34d399;
+
+}
+
+.no-transport{
+
+    text-align:center;
+
+    padding:40px 20px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:20px;
+
+}
+
+.no-transport h3{
+
+    margin-bottom:10px;
+
+}
+
+.no-transport p{
+
+    color:#ead5ff;
+
+}
+
+
+/* ===== STATS ===== */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
+
+    gap:30px;
+
+    padding:20px 8% 60px;
+
+}
+
+.stat-box{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:20px;
+
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:
+        0 0 25px rgba(162,89,255,.3);
+
+    transition:.3s;
+
+}
+
+.stat-box:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 0 30px #d946ef;
+
+}
+
+.stat-box h2{
+
+    font-size:40px;
+
+    color:white;
+
+    margin-bottom:10px;
+
+}
+
+.stat-box p{
+
+    font-size:18px;
+
+    color:#ead5ff;
+
+}
+
+
+/* ===== TRANSPORT MODAL ===== */
+
+.modal{
+
+    display:none;
+
+    position:fixed;
+
+    z-index:9999;
+
+    inset:0;
+
+    background:rgba(0,0,0,.75);
+
+    backdrop-filter:blur(8px);
+
+    padding:25px;
+
+    overflow-y:auto;
+
+}
+
+.modal.active{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.modal-box{
+
+    width:100%;
+
+    max-width:600px;
+
+    background:linear-gradient(
+        145deg,
+        #240039,
+        #3b0764,
+        #4c1d95
+    );
+
+    border:1px solid rgba(255,255,255,.2);
+
+    border-radius:25px;
+
+    padding:30px;
+
+    box-shadow:
+        0 0 40px rgba(217,70,239,.45);
+
+}
+
+.modal-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.modal-header h2{
+
+    color:#facc15;
+
+}
+
+.close-btn{
+
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.1);
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+}
+
+.close-btn:hover{
+
+    background:#dc2626;
+
+}
+
+.modal-detail{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    padding:12px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.1);
+
+}
+
+.modal-detail:last-child{
+
+    border-bottom:none;
+
+}
+
+.modal-detail span:first-child{
+
+    color:#c4b5fd;
+
+}
+
+.modal-detail span:last-child{
+
+    color:white;
+
+    font-weight:500;
+
+    text-align:right;
+
+}
+
+
+/* ===== FOOTER ===== */
+
+.footer{
+
+    margin-top:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,.08);
+
+    border-top:1px solid rgba(255,255,255,.15);
+
+}
+
+.footer p{
+
+    color:#ead5ff;
+
+    margin:10px 0;
+
+}
+
+.footer a{
+
+    color:white;
+
+    text-decoration:none;
+
+    margin:0 10px;
+
+}
+
+.footer a:hover{
+
+    color:#facc15;
+
+}
+
+
+/* ===== MOBILE ===== */
+
+@media(max-width:900px){
+
+    .navbar{
+
+        flex-direction:column;
+
+        gap:20px;
+
+    }
+
+    nav{
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+    }
+
+    .hero{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+    .hero-text h1{
+
+        font-size:42px;
+
+    }
+
+    .hero-buttons{
+
+        justify-content:center;
+
+    }
+
+    .modal-detail{
+
+        flex-direction:column;
+
+        gap:4px;
+
+    }
+
+    .modal-detail span:last-child{
+
+        text-align:left;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ===== NAVBAR ===== -->
+
+<header class="navbar">
+
+    <div class="logo-section">
+
+        <img
+            src="logo.jpg"
+            class="logo"
+            alt="FarmXT Logo">
+
+        <h2>FarmXT</h2>
+
+    </div>
+
+
+    <nav>
+
+        <a href="produce_type.html">
+            Upload Crop
+        </a>
+
+        <a href="featured_listings.html">
+            My Crops
+        </a>
+
+        <a href="farmer_orders.html">
+            Orders
+        </a>
+
+        <a href="farmer_transportation.html">
+            🚚 Transportation
+        </a>
+
+        <a href="farmer_profile.html">
+            Profile
+        </a>
+
+        <a
+            href="#"
+            class="logout"
+            onclick="logout(event)">
+
+            Logout
+
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- ===== HERO ===== -->
+
+<section class="hero">
+
+    <div class="hero-text">
+
+        <h1 id="welcome">
+            Welcome Farmer 👨‍🌾
+        </h1>
+
+        <p>
+
+            Manage your crops, receive orders from buyers,
+            connect with bulk buyers, restaurants, MSMEs
+            and retailers, and increase your profits using FarmXT.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a
+                href="produce_type.html"
+                class="btn">
+
+                Upload Crop
+
+            </a>
+
+
+            <a
+                href="featured_listings.html"
+                class="btn secondary">
+
+                My Crops
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-image">
+
+        <img
+            src="farmer.jpeg"
+            alt="Farmer">
+
+    </div>
+
+</section>
+
+
+<!-- ===== QUICK ACTIONS ===== -->
+
+<section class="quick-actions">
+
+
+    <!-- Upload Crop -->
+
+    <div class="card">
+
+        <h2>🌾 Upload Crop</h2>
+
+        <p>
+
+            Add a new crop for buyers to view.
+
+        </p>
+
+        <a href="produce_type.html">
+
+            Upload
+
+        </a>
+
+    </div>
+
+
+    <!-- My Crops -->
+
+    <div class="card">
+
+        <h2>📋 My Crops</h2>
+
+        <p>
+
+            View and manage all your listed crops.
+
+        </p>
+
+        <a href="featured_listings.html">
+
+            View
+
+        </a>
+
+    </div>
+
+
+    <!-- Orders -->
+
+    <div class="card">
+
+        <h2>📦 Orders Received</h2>
+
+        <p>
+
+            Check orders placed by clients.
+
+        </p>
+
+        <a href="farmer_orders.html">
+
+            Orders
+
+        </a>
+
+    </div>
+
+
+    <!-- Bulk Buyer -->
+
+    <div class="card">
+
+        <h2>🏪 Bulk Buyer Requirements</h2>
+
+        <p>
+
+            View requirements posted by bulk buyers
+            and connect with them to supply crops.
+
+        </p>
+
+        <a href="farmer_bulk_requirements.html">
+
+            View Requirements
+
+        </a>
+
+    </div>
+
+
+    <!-- Transportation -->
+
+    <div class="card">
+
+        <h2>🚚 Transportation</h2>
+
+        <p id="transportSummary">
+
+            Check transportation arrangements
+            made by Bulk Buyers.
+
+        </p>
+
+        <a href="farmer_transportation.html">
+
+            View Transportation
+
+        </a>
+
+    </div>
+
+
+    <!-- Profit Calculator -->
+
+    <div class="card">
+
+        <h2>💰 Profit Calculator</h2>
+
+        <p>
+
+            Estimate your profit before selling.
+
+        </p>
+
+        <a href="profit_calculation_system.html">
+
+            Calculate
+
+        </a>
+
+    </div>
+
+
+  <!-- Transportation -->
+
+<div class="card">
+
+    <h2>🚚 Transportation</h2>
+
+    <p>
+        View transportation arrangements made
+        by Bulk Buyers and confirm your pickup details.
+    </p>
+
+    <a href="farmer_transportation.html">
+        View Transportation
+    </a>
+
+</div>
+
+
+</section>
+
+
+<!-- ===== TRANSPORTATION SECTION ===== -->
+
+<section class="transport-section">
+
+    <div class="section-title">
+
+        <h2>
+            🚚 Transportation Arrangements
+        </h2>
+
+        <p>
+
+            Transportation arranged for your accepted
+            bulk buyer requirements.
+
+        </p>
+
+    </div>
+
+
+    <div id="transportContainer">
+
+        <!-- Loaded by JavaScript -->
+
+    </div>
+
+</section>
+
+
+<!-- ===== STATISTICS ===== -->
+
+<section class="stats">
+
+
+    <div class="stat-box">
+
+        <h2>45</h2>
+
+        <p>
+            Total Crops Listed
+        </p>
+
+    </div>
+
+
+    <div class="stat-box">
+
+        <h2>18</h2>
+
+        <p>
+            Orders Received
+        </p>
+
+    </div>
+
+
+    <div class="stat-box">
+
+        <h2>₹48,500</h2>
+
+        <p>
+            Total Earnings
+        </p>
+
+    </div>
+
+
+    <div class="stat-box">
+
+        <h2 id="transportCount">
+            0
+        </h2>
+
+        <p>
+            Transportation Arranged
+        </p>
+
+    </div>
+
+
+</section>
+
+
+<!-- ===== TRANSPORT DETAILS MODAL ===== -->
+
+<div
+    class="modal"
+    id="transportModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>
+                🚚 Transportation Details
+            </h2>
+
+            <button
+                class="close-btn"
+                onclick="closeTransportModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div id="transportDetails">
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ===== FOOTER ===== -->
+
+<footer class="footer">
+
+    <p>
+
+        © 2026 FarmXT |
+        Empowering Farmers Through Technology
+
+    </p>
+
+
+    <p>
+
+        <a href="contact.html">
+            Contact
+        </a>
+
+        |
+
+        <a href="community_network.html">
+            Community
+        </a>
+
+        |
+
+        <a href="transparency.html">
+            Transparency
+        </a>
+
+    </p>
+
+</footer>
+
+
+<script>
+
+
+// =====================================================
+// CHECK FARMER LOGIN
+// =====================================================
+
+let farmer =
+    JSON.parse(
+        localStorage.getItem("currentFarmer")
+    );
+
+
+if(!farmer){
+
+    alert("Please login first.");
+
+    window.location.href =
+        "farmer_login.html";
+
+}
+
+
+// =====================================================
+// ESCAPE HTML
+// =====================================================
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+// =====================================================
+// DISPLAY FARMER NAME
+// =====================================================
+
+if(farmer){
+
+    document.getElementById("welcome").innerHTML =
+
+        "Welcome, " +
+        escapeHTML(
+            farmer.name || "Farmer"
+        ) +
+        " 👨‍🌾";
+
+}
+
+
+// =====================================================
+// LOAD TRANSPORTATION
+// =====================================================
+
+function loadTransportation(){
+
+    let transportation =
+        JSON.parse(
+            localStorage.getItem(
+                "farmXTTransportation"
+            )
+        ) || [];
+
+
+    let interests =
+        JSON.parse(
+            localStorage.getItem(
+                "bulkBuyerInterests"
+            )
+        ) || [];
+
+
+    // =================================================
+    // FIND THIS FARMER'S INTERESTS
+    // =================================================
+
+    let myInterestIds =
+
+        interests
+        .filter(
+            function(interest){
+
+                return String(
+                    interest.farmerId
+                ) === String(
+                    farmer.id
+                );
+
+            }
+        )
+        .map(
+            function(interest){
+
+                return String(
+                    interest.id
+                );
+
+            }
+        );
+
+
+    // =================================================
+    // FIND TRANSPORTATION FOR THIS FARMER
+    // =================================================
+
+    let myTransportation =
+
+        transportation.filter(
+            function(item){
+
+                return myInterestIds.includes(
+                    String(item.interestId)
+                );
+
+            }
+        );
+
+
+    // =================================================
+    // UPDATE COUNT
+    // =================================================
+
+    document.getElementById(
+        "transportCount"
+    ).textContent =
+
+        myTransportation.length;
+
+
+    // =================================================
+    // UPDATE QUICK ACTION SUMMARY
+    // =================================================
+
+    let summary =
+        document.getElementById(
+            "transportSummary"
+        );
+
+
+    if(myTransportation.length === 0){
+
+        summary.textContent =
+            "No transportation has been arranged yet.";
+
+    }
+    else{
+
+        summary.textContent =
+
+            myTransportation.length +
+            " transportation arrangement" +
+            (
+                myTransportation.length > 1
+                ? "s"
+                : ""
+            ) +
+            " available for your crops.";
+
+    }
+
+
+    // =================================================
+    // CONTAINER
+    // =================================================
+
+    let container =
+        document.getElementById(
+            "transportContainer"
+        );
+
+
+    // =================================================
+    // EMPTY STATE
+    // =================================================
+
+    if(myTransportation.length === 0){
+
+        container.innerHTML = `
+
+            <div class="no-transport">
+
+                <h3>
+                    ⏳ No Transportation Arranged Yet
+                </h3>
+
+                <p>
+
+                    Once a Bulk Buyer selects you and
+                    arranges transportation, the details
+                    will appear here automatically.
+
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    // =================================================
+    // DISPLAY CARDS
+    // =================================================
+
+    let html = `
+        <div class="transport-grid">
+    `;
+
+
+    myTransportation.forEach(
+        function(transport,index){
+
+            html += `
+
+                <div class="transport-card">
+
+                    <h3>
+
+                        🚚
+                        ${escapeHTML(
+                            transport.crop ||
+                            "Crop Supply"
+                        )}
+
+                    </h3>
+
+
+                    <div class="transport-detail">
+
+                        <strong>
+                            📦 Quantity:
+                        </strong>
+
+                        ${escapeHTML(
+                            transport.quantity ||
+                            "Not Available"
+                        )}
+
+                    </div>
+
+
+                    <div class="transport-detail">
+
+                        <strong>
+                            📍 Pickup:
+                        </strong>
+
+                        ${escapeHTML(
+                            transport.pickupLocation ||
+                            "Not Available"
+                        )}
+
+                    </div>
+
+
+                    <div class="transport-detail">
+
+                        <strong>
+                            📍 Delivery:
+                        </strong>
+
+                        ${escapeHTML(
+                            transport.deliveryLocation ||
+                            "Not Available"
+                        )}
+
+                    </div>
+
+
+                    <div class="transport-detail">
+
+                        <strong>
+                            📅 Pickup:
+                        </strong>
+
+                        ${escapeHTML(
+                            transport.pickupDate ||
+                            "Not Available"
+                        )}
+
+                        &nbsp;
+
+                        ${escapeHTML(
+                            transport.pickupTime ||
+                            ""
+                        )}
+
+                    </div>
+
+
+                    <div class="transport-detail">
+
+                        <strong>
+                            🚛 Vehicle:
+                        </strong>
+
+                        ${escapeHTML(
+                            transport.vehicleNumber ||
+                            "Not Available"
+                        )}
+
+                    </div>
+
+
+                    <div class="transport-detail">
+
+                        <strong>
+                            👨‍✈️ Driver:
+                        </strong>
+
+                        ${escapeHTML(
+                            transport.driverName ||
+                            "Not Available"
+                        )}
+
+                    </div>
+
+
+                    <div class="transport-detail">
+
+                        <strong>
+                            📞 Driver:
+                        </strong>
+
+                        ${escapeHTML(
+                            transport.driverPhone ||
+                            "Not Available"
+                        )}
+
+                    </div>
+
+
+                    <span class="transport-status">
+
+                        ✓
+                        ${escapeHTML(
+                            transport.status ||
+                            "Arranged"
+                        )}
+
+                    </span>
+
+
+                    <button
+                        class="transport-button"
+                        onclick="viewTransport(
+                            ${index}
+                        )">
+
+                        👁️ View Full Details
+
+                    </button>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    html += `
+        </div>
+    `;
+
+
+    container.innerHTML = html;
+
+
+    // Save filtered list for modal access
+
+    window.myFarmerTransportation =
+        myTransportation;
+
+}
+
+
+// =====================================================
+// VIEW FULL TRANSPORTATION DETAILS
+// =====================================================
+
+function viewTransport(index){
+
+    let list =
+        window.myFarmerTransportation || [];
+
+
+    let transport =
+        list[index];
+
+
+    if(!transport){
+
+        alert(
+            "Transportation details not found."
+        );
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "transportDetails"
+    ).innerHTML = `
+
+        <div class="modal-detail">
+
+            <span>🌾 Crop</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.crop
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="modal-detail">
+
+            <span>📦 Quantity</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.quantity
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="modal-detail">
+
+            <span>🚛 Transport Type</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.transportType
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="modal-detail">
+
+            <span>📍 Pickup Location</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.pickupLocation
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="modal-detail">
+
+            <span>📍 Delivery Location</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.deliveryLocation
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="modal-detail">
+
+            <span>📅 Pickup Date</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.pickupDate
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="modal-detail">
+
+            <span>⏰ Pickup Time</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.pickupTime
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="modal-detail">
+
+            <span>💰 Transportation Cost</span>
+
+            <span>
+                ₹${escapeHTML(
+                    transport.transportCost
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="modal-detail">
+
+            <span>🚛 Vehicle Number</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.vehicleNumber
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="modal-detail">
+
+            <span>👨‍✈️ Driver Name</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.driverName
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="modal-detail">
+
+            <span>📞 Driver Contact</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.driverPhone
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="modal-detail">
+
+            <span>📌 Status</span>
+
+            <span style="color:#5eead4">
+
+                ✓ ${escapeHTML(
+                    transport.status ||
+                    "Arranged"
+                )}
+
+            </span>
+
+        </div>
+
+
+        <div class="modal-detail">
+
+            <span>🕐 Arranged At</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.arrangedAt ||
+                    "Not Available"
+                )}
+            </span>
+
+        </div>
+
+    `;
+
+
+    document.getElementById(
+        "transportModal"
+    ).classList.add("active");
+
+}
+
+
+// =====================================================
+// CLOSE TRANSPORT MODAL
+// =====================================================
+
+function closeTransportModal(){
+
+    document.getElementById(
+        "transportModal"
+    ).classList.remove("active");
+
+}
+
+
+// =====================================================
+// CLOSE MODAL WHEN CLICKING OUTSIDE
+// =====================================================
+
+document.getElementById(
+    "transportModal"
+).addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === this){
+
+            closeTransportModal();
+
+        }
+
+    }
+);
+
+
+// =====================================================
+// LOGOUT
+// =====================================================
+
+function logout(event){
+
+    event.preventDefault();
+
+
+    localStorage.removeItem(
+        "userType"
+    );
+
+
+    localStorage.removeItem(
+        "currentFarmer"
+    );
+
+
+    localStorage.removeItem(
+        "currentClient"
+    );
+
+
+    alert(
+        "Logged Out Successfully!"
+    );
+
+
+    window.location.href =
+        "final.html";
+
+}
+
+
+// =====================================================
+// LOAD PAGE
+// =====================================================
+
+if(farmer){
+
+    loadTransportation();
+
+}
+
+</script>
+
+
+</body>
+
+</html>

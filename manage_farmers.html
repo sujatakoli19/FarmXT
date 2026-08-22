@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Farmers | FarmXT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#14001f,#2d014d,#4b0082,#6a0dad);
+min-height:100vh;
+color:white;
+}
+
+/* Navbar */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+border-bottom:1px solid rgba(255,255,255,.15);
+}
+
+.logo-section{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.logo{
+width:60px;
+height:60px;
+background:white;
+padding:5px;
+border-radius:50%;
+}
+
+.logo-section h2{
+font-size:30px;
+}
+
+.back-btn{
+text-decoration:none;
+padding:12px 25px;
+border-radius:30px;
+background:linear-gradient(90deg,#7e22ce,#9333ea,#c026d3);
+color:white;
+font-weight:bold;
+}
+
+.back-btn:hover{
+box-shadow:0 0 20px #d946ef;
+}
+
+/* Heading */
+
+.heading{
+text-align:center;
+padding:40px 20px;
+}
+
+.heading h1{
+font-size:42px;
+margin-bottom:10px;
+}
+
+.heading p{
+color:#ead5ff;
+}
+
+/* Table */
+
+.table-container{
+width:90%;
+margin:auto;
+overflow-x:auto;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+padding:25px;
+border-radius:20px;
+box-shadow:0 0 25px rgba(162,89,255,.3);
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th{
+background:#7e22ce;
+padding:15px;
+}
+
+td{
+padding:15px;
+text-align:center;
+border-bottom:1px solid rgba(255,255,255,.15);
+}
+
+tr:hover{
+background:rgba(255,255,255,.08);
+}
+
+/* Buttons */
+
+button{
+padding:8px 18px;
+margin:3px;
+border:none;
+border-radius:20px;
+cursor:pointer;
+font-weight:bold;
+color:white;
+}
+
+.edit{
+background:#16a34a;
+}
+
+.delete{
+background:#dc2626;
+}
+
+button:hover{
+opacity:.9;
+}
+
+.footer{
+text-align:center;
+padding:25px;
+margin-top:40px;
+color:#ead5ff;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+<div class="logo-section">
+
+<img src="logo.jpg" class="logo">
+
+<h2>FarmXT Admin</h2>
+
+</div>
+
+<a href="admin_dashboard.html" class="back-btn">⬅ Dashboard</a>
+
+</header>
+
+<section class="heading">
+
+<h1>👨‍🌾 Manage Farmers</h1>
+
+<p>View, edit and remove registered farmers.</p>
+<button onclick="window.location.href='manage_farmers.html'"></button>
+
+</section>
+
+<div class="table-container">
+
+<table id="farmerTable">
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Mobile</th>
+<th>Village</th>
+<th>Main Crop</th>
+<th>Actions</th>
+</tr>
+
+
+</table>
+
+</div>
+
+<div class="footer">
+
+© 2026 FarmXT Admin Panel
+
+</div>
+
+<script>
+
+
+
+let farmers = JSON.parse(localStorage.getItem("farmers")) || [];
+
+displayFarmers();
+
+function displayFarmers(){
+
+    let body = document.getElementById("farmerBody");
+
+    body.innerHTML = "";
+
+    if(farmers.length==0){
+
+        body.innerHTML = `
+        <tr>
+        <td colspan="6" style="padding:30px;">
+        No farmers have registered yet.
+        </td>
+        </tr>
+        `;
+
+        return;
+    }
+
+    farmers.forEach((farmer,index)=>{
+
+        body.innerHTML += `
+        <tr>
+
+        <td>${farmer.id}</td>
+
+        <td>${farmer.name}</td>
+
+        <td>${farmer.mobile}</td>
+
+        <td>${farmer.village}</td>
+
+        <td>${farmer.crop}</td>
+
+        <td>
+
+        <button class="edit" onclick="editFarmer(${index})">
+        Edit
+        </button>
+
+        <button class="delete" onclick="deleteFarmer(${index})">
+        Delete
+        </button>
+
+        </td>
+
+        </tr>
+        `;
+
+    });
+
+}
+
+function deleteFarmer(index){
+
+    if(confirm("Delete this farmer?")){
+
+        farmers.splice(index,1);
+
+        localStorage.setItem("farmers",JSON.stringify(farmers));
+
+        displayFarmers();
+
+    }
+
+}
+
+function editFarmer(index){
+
+    let farmer = farmers[index];
+
+    let name = prompt("Farmer Name", farmer.name);
+
+    if(name==null) return;
+
+    let mobile = prompt("Mobile", farmer.mobile);
+
+    if(mobile==null) return;
+
+    let village = prompt("Village", farmer.village);
+
+    if(village==null) return;
+
+    let crop = prompt("Main Crop", farmer.crop);
+
+    if(crop==null) return;
+
+    farmer.name = name;
+    farmer.mobile = mobile;
+    farmer.village = village;
+    farmer.crop = crop;
+
+    localStorage.setItem("farmers",JSON.stringify(farmers));
+
+    displayFarmers();
+
+    alert("Farmer Updated Successfully");
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Edit Buyer Profile | FarmXT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:linear-gradient(
+135deg,
+#14001f,
+#2d014d,
+#4b0082,
+#6a0dad
+);
+
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:30px;
+
+}
+
+.container{
+
+width:500px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.15);
+
+border-radius:25px;
+
+padding:35px;
+
+box-shadow:0 0 30px rgba(162,89,255,.5);
+
+color:white;
+
+}
+
+h1{
+
+text-align:center;
+margin-bottom:10px;
+
+}
+
+.subtitle{
+
+text-align:center;
+color:#ead5ff;
+margin-bottom:30px;
+
+}
+
+label{
+
+display:block;
+margin-bottom:8px;
+margin-top:15px;
+font-weight:bold;
+
+}
+
+input,
+textarea,
+select{
+
+width:100%;
+
+padding:14px;
+
+border:none;
+outline:none;
+
+border-radius:12px;
+
+background:rgba(255,255,255,.10);
+
+border:1px solid rgba(255,255,255,.20);
+
+color:white;
+
+font-size:15px;
+
+}
+
+textarea{
+
+resize:none;
+height:90px;
+
+}
+
+select option{
+
+color:black;
+
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+
+border:1px solid #d946ef;
+box-shadow:0 0 15px #c026d3;
+
+}
+
+button{
+
+width:100%;
+
+padding:15px;
+
+margin-top:25px;
+
+border:none;
+
+border-radius:30px;
+
+background:linear-gradient(
+90deg,
+#7e22ce,
+#9333ea,
+#c026d3
+);
+
+color:white;
+
+font-size:17px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+button:hover{
+
+transform:translateY(-3px);
+
+box-shadow:0 0 20px #d946ef;
+
+}
+
+.back{
+
+display:block;
+
+margin-top:20px;
+
+text-align:center;
+
+color:#facc15;
+
+text-decoration:none;
+
+font-weight:bold;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>👤 Edit Profile</h1>
+
+<p class="subtitle">
+Update your business information
+</p>
+
+<label>Business Name</label>
+
+<input
+type="text"
+id="businessName">
+
+<label>Owner Name</label>
+
+<input
+type="text"
+id="ownerName">
+
+<label>Mobile Number</label>
+
+<input
+type="text"
+id="mobile"
+readonly>
+
+<label>Address</label>
+
+<textarea id="address"></textarea>
+
+<label>Business Type</label>
+
+<select id="businessType">
+
+<option>Restaurant</option>
+<option>Hotel</option>
+<option>Retail Store</option>
+<option>MSME</option>
+<option>Wholesaler</option>
+
+</select>
+
+<button onclick="saveProfile()">
+
+Save Changes
+
+</button>
+
+<a href="buyer_dashboard.html" class="back">
+
+⬅ Back to Dashboard
+
+</a>
+
+</div>
+
+<script>
+
+// Get logged in buyer
+
+let buyer = JSON.parse(localStorage.getItem("currentUser"));
+
+if(!buyer){
+
+alert("Please login first.");
+
+window.location.href="buyer_login.html";
+
+}
+
+// Load details
+
+document.getElementById("businessName").value = buyer.businessName;
+
+document.getElementById("ownerName").value = buyer.ownerName;
+
+document.getElementById("mobile").value = buyer.mobile;
+
+document.getElementById("address").value = buyer.address;
+
+document.getElementById("businessType").value = buyer.businessType;
+
+// Save profile
+
+function saveProfile(){
+
+let buyers = JSON.parse(localStorage.getItem("buyers")) || [];
+
+let index = buyers.findIndex(b => b.mobile === buyer.mobile);
+
+if(index == -1){
+
+alert("Buyer not found.");
+
+return;
+
+}
+
+buyers[index].businessName =
+document.getElementById("businessName").value;
+
+buyers[index].ownerName =
+document.getElementById("ownerName").value;
+
+buyers[index].address =
+document.getElementById("address").value;
+
+buyers[index].businessType =
+document.getElementById("businessType").value;
+
+// Save updated list
+
+localStorage.setItem(
+"buyers",
+JSON.stringify(buyers)
+);
+
+// Update current user
+
+localStorage.setItem(
+"currentUser",
+JSON.stringify(buyers[index])
+);
+
+alert("Profile Updated Successfully!");
+
+window.location.href="buyer_dashboard.html";
+
+}
+
+</script>
+
+</body>
+</html>

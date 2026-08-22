@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Order Confirmation | FarmXT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:40px;
+
+    background:linear-gradient(
+        135deg,
+        #14001f,
+        #2d014d,
+        #4b0082,
+        #6a0dad
+    );
+
+    color:white;
+}
+
+.container{
+
+    width:100%;
+    max-width:800px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:25px;
+
+    padding:40px;
+
+    box-shadow:0 0 35px rgba(162,89,255,.5);
+
+}
+
+.logo{
+
+    width:90px;
+    height:90px;
+
+    display:block;
+
+    margin:0 auto 20px;
+
+    border-radius:50%;
+
+    background:white;
+
+    padding:8px;
+
+}
+
+.success{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.success h1{
+
+    color:#facc15;
+
+    font-size:35px;
+
+    margin-bottom:10px;
+
+}
+
+.success p{
+
+    color:#ead5ff;
+
+    font-size:17px;
+
+}
+
+.order-box{
+
+    background:rgba(255,255,255,.08);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    margin-top:20px;
+
+}
+
+.order-box h2{
+
+    color:#facc15;
+
+    margin-bottom:20px;
+
+}
+
+.detail{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    padding:10px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.12);
+
+}
+
+.detail:last-child{
+
+    border-bottom:none;
+
+}
+
+.label{
+
+    color:#ead5ff;
+
+}
+
+.value{
+
+    color:white;
+
+    font-weight:600;
+
+    text-align:right;
+
+}
+
+.total{
+
+    font-size:24px;
+
+    color:#facc15;
+
+}
+
+.status{
+
+    display:inline-block;
+
+    padding:6px 15px;
+
+    border-radius:20px;
+
+    background:#f59e0b;
+
+    color:white;
+
+}
+
+.buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    margin-top:30px;
+
+    flex-wrap:wrap;
+
+}
+
+.btn{
+
+    text-decoration:none;
+
+    padding:14px 28px;
+
+    border-radius:30px;
+
+    color:white;
+
+    font-weight:bold;
+
+    background:linear-gradient(
+        90deg,
+        #7e22ce,
+        #9333ea,
+        #c026d3
+    );
+
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 0 20px #d946ef;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+    <img src="logo.jpg" class="logo" alt="FarmXT Logo">
+
+
+    <div class="success">
+
+        <h1>✅ Order Placed Successfully!</h1>
+
+        <p>Thank you for shopping with FarmXT.</p>
+
+    </div>
+
+
+    <div class="order-box">
+
+        <h2>📦 Order Details</h2>
+
+
+        <div class="detail">
+
+            <span class="label">Order ID</span>
+
+            <span class="value" id="orderId"></span>
+
+        </div>
+
+
+        <div class="detail">
+
+            <span class="label">🌾 Product</span>
+
+            <span class="value" id="productName"></span>
+
+        </div>
+
+
+        <div class="detail">
+
+            <span class="label">👨‍🌾 Farmer</span>
+
+            <span class="value" id="farmerName"></span>
+
+        </div>
+
+
+        <div class="detail">
+
+            <span class="label">📦 Quantity</span>
+
+            <span class="value" id="quantity"></span>
+
+        </div>
+
+
+        <div class="detail">
+
+            <span class="label">💰 Price</span>
+
+            <span class="value" id="price"></span>
+
+        </div>
+
+
+        <div class="detail">
+
+            <span class="label">💵 Total Amount</span>
+
+            <span class="value total" id="total"></span>
+
+        </div>
+
+
+        <div class="detail">
+
+            <span class="label">👤 Customer</span>
+
+            <span class="value" id="customerName"></span>
+
+        </div>
+
+
+        <div class="detail">
+
+            <span class="label">📱 Mobile</span>
+
+            <span class="value" id="mobile"></span>
+
+        </div>
+
+
+        <div class="detail">
+
+            <span class="label">📍 Delivery Address</span>
+
+            <span class="value" id="address"></span>
+
+        </div>
+
+
+        <div class="detail">
+
+            <span class="label">💳 Payment Method</span>
+
+            <span class="value" id="paymentMethod"></span>
+
+        </div>
+
+
+        <div class="detail">
+
+            <span class="label">📅 Order Date</span>
+
+            <span class="value" id="date"></span>
+
+        </div>
+
+
+        <div class="detail">
+
+            <span class="label">Order Status</span>
+
+            <span class="value">
+                <span class="status" id="status"></span>
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="buttons">
+
+        <a href="market_place.html" class="btn">
+            🛒 Continue Shopping
+        </a>
+
+        <a href="client_orders.html" class="btn">
+            📦 My Orders
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+
+if(orders.length === 0){
+
+    document.querySelector(".container").innerHTML = `
+
+        <div class="success">
+
+            <h1>❌ No Order Found</h1>
+
+            <p>
+                We could not find your recent order.
+            </p>
+
+            <br>
+
+            <a href="market_place.html" class="btn">
+                Back to Marketplace
+            </a>
+
+        </div>
+
+    `;
+
+}
+else{
+
+
+    // Get the latest order
+
+    let order = orders[orders.length - 1];
+
+
+    // Create Order ID if it doesn't already exist
+
+    let orderId =
+        order.orderId ||
+        "FXT" + Date.now();
+
+
+    if(!order.orderId){
+
+        order.orderId = orderId;
+
+        orders[orders.length - 1] = order;
+
+        localStorage.setItem(
+            "orders",
+            JSON.stringify(orders)
+        );
+
+    }
+
+
+    document.getElementById("orderId").innerText =
+        orderId;
+
+
+    document.getElementById("productName").innerText =
+        order.productName;
+
+
+    document.getElementById("farmerName").innerText =
+        order.farmerName;
+
+
+    document.getElementById("quantity").innerText =
+        order.quantity + " Kg";
+
+
+    document.getElementById("price").innerText =
+        "₹" + order.price + " / Kg";
+
+
+    document.getElementById("total").innerText =
+        "₹" + order.total;
+
+
+    document.getElementById("customerName").innerText =
+        order.customerName;
+
+
+    document.getElementById("mobile").innerText =
+        order.mobile;
+
+
+    document.getElementById("address").innerText =
+        order.address;
+
+
+    document.getElementById("paymentMethod").innerText =
+        order.paymentMethod;
+
+
+    document.getElementById("date").innerText =
+        order.date;
+
+
+    document.getElementById("status").innerText =
+        order.status || "Pending";
+
+}
+
+</script>
+</body>
+
+</html>

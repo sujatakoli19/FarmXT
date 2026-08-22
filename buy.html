@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Buy Product | FarmXT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#14001f,#2d014d,#4b0082,#6a0dad);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:40px;
+}
+
+.container{
+width:900px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+border-radius:25px;
+padding:35px;
+box-shadow:0 0 35px rgba(162,89,255,.5);
+}
+
+.logo{
+width:90px;
+display:block;
+margin:auto;
+margin-bottom:20px;
+border-radius:50%;
+background:white;
+padding:8px;
+}
+
+h1{
+text-align:center;
+color:white;
+margin-bottom:35px;
+}
+
+.product-card{
+display:flex;
+gap:35px;
+align-items:center;
+margin-bottom:40px;
+}
+
+.product-image{
+width:320px;
+height:320px;
+object-fit:cover;
+border-radius:20px;
+}
+
+.details{
+flex:1;
+}
+
+.details h2{
+color:white;
+margin-bottom:20px;
+}
+
+.details p{
+color:#ead5ff;
+margin:12px 0;
+font-size:17px;
+}
+
+.details h3{
+color:#facc15;
+font-size:30px;
+margin-top:20px;
+}
+
+.order-section label{
+display:block;
+margin-top:20px;
+margin-bottom:8px;
+color:white;
+font-weight:600;
+}
+
+.order-section input,
+.order-section select{
+width:100%;
+padding:14px;
+border:none;
+outline:none;
+border-radius:12px;
+background:rgba(255,255,255,.12);
+color:white;
+font-size:16px;
+}
+
+.order-section select option{
+background:#2d014d;
+}
+
+.order-section h2{
+margin:30px 0;
+color:#facc15;
+}
+
+.buy-btn,
+.back-btn{
+display:inline-block;
+padding:15px 30px;
+margin-right:15px;
+border-radius:30px;
+text-decoration:none;
+font-weight:bold;
+color:white;
+background:linear-gradient(90deg,#7e22ce,#9333ea,#c026d3);
+transition:.3s;
+}
+
+.buy-btn:hover,
+.back-btn:hover{
+box-shadow:0 0 20px #d946ef;
+transform:translateY(-3px);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<img src="logo.jpg" class="logo">
+
+<h1>🛒 Buy Product</h1>
+
+<div class="product-card">
+
+<img id="productImage" class="product-image" src="">
+
+<div class="details">
+
+<h2 id="productName"></h2>
+
+<p id="farmer"></p>
+
+<p id="location"></p>
+
+<p id="rating"></p>
+
+<h3 id="price"></h3>
+
+</div>
+
+</div>
+
+<div class="order-section">
+
+<label>Quantity (Kg)</label>
+
+<input
+type="number"
+id="quantity"
+value="1"
+min="1"
+oninput="calculateTotal()">
+
+<label>Payment Method</label>
+<select id="paymentMethod">
+<option>Cash on Delivery</option>
+<option>UPI</option>
+<option>Debit Card</option>
+<option>Net Banking</option>
+</select>
+<label>Customer Name</label>
+<input type="text" id="customerName">
+
+<label>Mobile Number</label>
+<input type="text" id="mobile">
+
+<label>Delivery Address</label>
+<input type="text" id="address">
+<h2>Total Price : ₹<span id="total">0</span></h2>
+
+<button class="buy-btn" onclick="placeOrder()">
+Proceed to Checkout
+</button>
+
+<br><br>
+<a href="market_place.html" class="back-btn">
+← Back to Market Place
+</a>
+
+
+</div>
+
+</div>
+
+<script>
+
+
+
+let product =
+JSON.parse(localStorage.getItem("selectedProduct"));
+
+if(product){
+
+document.getElementById("productImage").src = product.image;
+
+document.getElementById("productName").innerHTML = product.name;
+
+document.getElementById("farmer").innerHTML =
+"👨‍🌾 Farmer : " + product.farmer;
+
+document.getElementById("location").innerHTML =
+"📍 " + (product.location || "Not Available");
+
+document.getElementById("rating").innerHTML =
+"⭐ 4.8 Rating";
+
+document.getElementById("price").innerHTML =
+"₹" + product.price + " / Kg";
+
+calculateTotal();
+let currentUser = JSON.parse(localStorage.getItem("currentClient"));
+
+if(currentUser){
+
+document.getElementById("customerName").value =
+currentUser.name || "";
+
+document.getElementById("mobile").value =
+currentUser.mobile || "";
+
+document.getElementById("address").value =
+currentUser.address || "";
+document.getElementById("customerName").readOnly = true;
+
+document.getElementById("mobile").readOnly = true;
+
+document.getElementById("address").readOnly = true;
+}
+
+}else{
+
+document.querySelector(".container").innerHTML =
+"<h1 style='color:white;text-align:center;'>No Product Selected</h1>";
+
+}
+
+
+
+function calculateTotal(){
+
+    if(!product) return;
+
+    let quantity = Number(document.getElementById("quantity").value);
+
+    if(quantity < 1){
+        quantity = 1;
+        document.getElementById("quantity").value = 1;
+    }
+
+    document.getElementById("total").innerHTML =
+    product.price * quantity;
+
+}
+function placeOrder(){
+
+    // Prevent double-click / duplicate order
+    const checkoutButton = document.querySelector(".buy-btn");
+
+    if(checkoutButton.disabled){
+        return;
+    }
+
+    checkoutButton.disabled = true;
+    checkoutButton.innerText = "Processing...";
+
+    let customerName =
+        document.getElementById("customerName").value.trim();
+
+    let mobile =
+        document.getElementById("mobile").value.trim();
+
+    let address =
+        document.getElementById("address").value.trim();
+
+    let quantity =
+        Number(document.getElementById("quantity").value);
+
+    let paymentMethod =
+        document.getElementById("paymentMethod").value;
+
+    let currentUser =
+        JSON.parse(localStorage.getItem("currentClient"));
+
+    // Check login
+    if(!currentUser){
+
+        alert("Please login first.");
+
+        window.location.href = "buyer_login.html";
+
+        return;
+    }
+
+    // Check customer details
+    if(customerName === "" || mobile === "" || address === ""){
+
+        alert("Please fill all customer details.");
+
+        checkoutButton.disabled = false;
+        checkoutButton.innerText = "Proceed to Checkout";
+
+        return;
+    }
+
+    // Check mobile number
+    if(mobile.length !== 10 || isNaN(mobile)){
+
+        alert("Enter a valid 10-digit mobile number.");
+
+        checkoutButton.disabled = false;
+        checkoutButton.innerText = "Proceed to Checkout";
+
+        return;
+    }
+
+    // Check quantity
+    if(quantity <= 0){
+
+        alert("Please enter a valid quantity.");
+
+        checkoutButton.disabled = false;
+        checkoutButton.innerText = "Proceed to Checkout";
+
+        return;
+    }
+
+    // Check product
+    if(!product){
+
+        alert("No product selected.");
+
+        checkoutButton.disabled = false;
+        checkoutButton.innerText = "Proceed to Checkout";
+
+        return;
+    }
+
+    let total = Number(product.price) * quantity;
+
+    let orders =
+        JSON.parse(localStorage.getItem("orders")) || [];
+
+    // Create order
+let newOrder = {
+
+    orderId: "ORD" + Date.now(),
+
+    buyerId: currentUser.mobile,
+
+    buyerName: currentUser.name,
+
+    buyerMobile: currentUser.mobile,
+
+    farmerId: product.farmerId || "",
+
+    productName: product.name,
+
+    farmerName: product.farmer,
+
+    price: Number(product.price),
+
+    quantity: quantity,
+
+    total: total,
+
+    customerName: customerName,
+
+    mobile: mobile,
+
+    address: address,
+
+    paymentMethod: paymentMethod,
+
+    image: product.image,
+
+    date: new Date().toLocaleString(),
+
+    status: "Pending"
+
+};
+    // Add ONLY once
+    orders.push(newOrder);
+
+    localStorage.setItem(
+        "orders",
+        JSON.stringify(orders)
+    );
+
+    // Remove selected product so it cannot be ordered again
+    localStorage.removeItem("selectedProduct");
+
+    alert("Order Placed Successfully!");
+
+    window.location.href = "confirm_order.html";
+}
+</script>
+
+</body>
+</html>

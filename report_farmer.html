@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Report Farmer | FarmXT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#14001f,#2d014d,#4b0082,#6a0dad);
+min-height:100vh;
+color:white;
+}
+
+/* Navbar */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+border-bottom:1px solid rgba(255,255,255,.15);
+}
+
+.logo-section{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.logo{
+width:60px;
+height:60px;
+background:white;
+padding:5px;
+border-radius:50%;
+}
+
+.logo-section h2{
+font-size:30px;
+}
+
+nav{
+display:flex;
+gap:25px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:600;
+transition:.3s;
+}
+
+nav a:hover{
+color:#facc15;
+}
+
+.container{
+max-width:700px;
+margin:50px auto;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+padding:40px;
+border-radius:20px;
+border:1px solid rgba(255,255,255,.15);
+box-shadow:0 0 30px rgba(162,89,255,.4);
+}
+
+h1{
+text-align:center;
+margin-bottom:10px;
+}
+
+.subtitle{
+text-align:center;
+color:#ead5ff;
+margin-bottom:30px;
+}
+
+label{
+display:block;
+margin-bottom:8px;
+margin-top:18px;
+font-weight:600;
+color:#ead5ff;
+}
+
+input,
+select,
+textarea{
+width:100%;
+padding:14px;
+border:none;
+outline:none;
+border-radius:12px;
+background:rgba(255,255,255,.12);
+color:white;
+font-size:15px;
+}
+
+select option{
+background:#2d014d;
+}
+
+textarea{
+height:140px;
+resize:none;
+}
+
+button{
+width:100%;
+margin-top:30px;
+padding:15px;
+border:none;
+border-radius:30px;
+background:linear-gradient(90deg,#7e22ce,#9333ea,#c026d3);
+color:white;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+transform:translateY(-3px);
+box-shadow:0 0 20px #d946ef;
+}
+
+.back{
+display:block;
+text-align:center;
+margin-top:25px;
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+.back:hover{
+color:#facc15;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+<div class="logo-section">
+<img src="logo.jpg" class="logo">
+<h2>FarmXT</h2>
+</div>
+
+<nav>
+<a href="final.html">Home</a>
+<a href="community_network.html">Community</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+</header>
+
+<div class="container">
+
+<h1>🚨 Report Farmer</h1>
+
+<p class="subtitle">
+Help us keep FarmXT safe by reporting suspicious farmers.
+</p>
+
+<form id="reportForm">
+
+<label>Name of User</label>
+
+<input
+type="text"
+id="userName"
+placeholder="Enter Farmer Name"
+required>
+
+<label>Mobile Number (Optional)</label>
+
+<input
+type="tel"
+id="mobile"
+placeholder="Enter Mobile Number">
+
+<label>Reason for Report</label>
+
+<select id="reason" required>
+<option value="">Select Reason</option>
+<option>Fake Product</option>
+<option>Fraud</option>
+<option>Abusive Behaviour</option>
+<option>Spam</option>
+<option>Payment Issue</option>
+<option>Other</option>
+</select>
+
+<label>Describe the Issue</label>
+
+<textarea
+id="description"
+placeholder="Write complete details about the issue..."
+required></textarea>
+<button type="submit">
+Submit Report
+</button>
+
+</form>
+
+<a href="final.html" class="back">⬅ Back to Home</a>
+
+</div>
+
+<script>
+
+
+document.getElementById("reportForm").addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    let report = {
+
+        reportedBy: currentUser ? currentUser.name : "Guest",
+
+        userType: "Farmer",
+
+        userName: document.getElementById("userName").value,
+
+        mobile: document.getElementById("mobile").value,  
+
+        reason: document.getElementById("reason").value,
+
+        description: document.getElementById("description").value,
+
+        date: new Date().toLocaleString()
+
+    };
+
+    let reports = JSON.parse(localStorage.getItem("reports")) || [];
+
+    reports.push(report);
+
+    localStorage.setItem("reports", JSON.stringify(reports));
+
+    alert("✅ Farmer reported successfully.");
+
+    this.reset();
+
+    window.location.href = "final.html";
+
+});
+
+</script>
+
+
+</body>
+</html>

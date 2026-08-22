@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Client Sign Up | FarmXT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:40px;
+background:linear-gradient(135deg,#14001f,#2d014d,#4b0082,#6a0dad);
+}
+
+.signup-box{
+width:500px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.15);
+border-radius:25px;
+padding:35px;
+box-shadow:0 0 35px rgba(162,89,255,.5);
+}
+
+.logo{
+display:block;
+margin:auto;
+width:110px;
+height:110px;
+padding:8px;
+border-radius:50%;
+background:white;
+box-shadow:0 0 20px #a855f7;
+}
+
+h2{
+text-align:center;
+color:white;
+margin:20px 0;
+}
+
+label{
+display:block;
+color:#ead5ff;
+font-weight:600;
+margin-top:15px;
+}
+
+input{
+width:100%;
+padding:14px;
+margin-top:8px;
+border-radius:12px;
+border:1px solid rgba(255,255,255,.2);
+background:rgba(255,255,255,.08);
+color:white;
+outline:none;
+}
+
+input::placeholder{
+color:#d8c8f0;
+}
+
+input:focus{
+border:1px solid #d946ef;
+box-shadow:0 0 15px #c026d3;
+}
+
+
+button{
+width:100%;
+margin-top:25px;
+padding:15px;
+border:none;
+border-radius:12px;
+background:linear-gradient(90deg,#7e22ce,#9333ea,#c026d3);
+color:white;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+transform:translateY(-3px);
+box-shadow:0 0 20px #d946ef;
+}
+
+.links{
+text-align:center;
+margin-top:20px;
+line-height:35px;
+}
+
+.links a{
+color:white;
+text-decoration:none;
+font-weight:600;
+}
+
+.links a:hover{
+color:#facc15;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="signup-box">
+
+<img src="logo.jpg" class="logo">
+
+<h2>🛒 Client Sign Up</h2>
+
+<form id="signupForm">
+
+<label>Full Name</label>
+<input type="text" id="name" placeholder="Enter Full Name" required>
+<label>Email</label>
+<input type="email" id="email" placeholder="Enter Email" required>
+
+<label>Mobile Number</label>
+<input type="tel" id="mobile" maxlength="10" placeholder="Enter Mobile Number" required>
+
+<label>Address</label>
+<input type="text" id="address" placeholder="Enter Address" required>
+
+
+
+<button type="submit">Sign Up</button>
+
+</form>
+
+<div class="links">
+
+<p>Already have an account?
+<a href="client_login.html">Login</a>
+</p>
+
+<p>
+<a href="final.html">🏠 Back to Home</a>
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+
+document.getElementById("signupForm").addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let mobile = document.getElementById("mobile").value.trim();
+    let address = document.getElementById("address").value.trim();
+    if(mobile.length != 10 || isNaN(mobile)){
+    alert("Please enter a valid 10-digit mobile number.");
+    return;
+}
+
+
+    let clients = JSON.parse(localStorage.getItem("clients")) || [];
+
+    // Check duplicate mobile number
+    let exists = clients.some(client => client.mobile === mobile);
+
+    if(exists){
+        alert("This mobile number is already registered.");
+        return;
+    }
+
+    let client = {
+    name: name,
+    email: email,
+    mobile: mobile,
+    address: address
+};
+    clients.push(client);
+
+    localStorage.setItem("clients", JSON.stringify(clients));
+
+    alert("Client Registration Successful!");
+
+    window.location.href = "client_login.html";
+
+});
+
+</script>
+
+</body>
+</html> 

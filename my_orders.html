@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Orders | FarmXT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:linear-gradient(135deg,#14001f,#2d014d,#4b0082,#6a0dad);
+min-height:100vh;
+padding:40px;
+
+}
+
+.container{
+
+max-width:1100px;
+margin:auto;
+
+}
+
+.logo{
+
+width:90px;
+display:block;
+margin:auto;
+background:white;
+padding:8px;
+border-radius:50%;
+
+}
+
+h1{
+
+text-align:center;
+color:white;
+margin:25px 0 40px;
+
+}
+.search-box{
+
+width:50%;
+margin:0 auto 40px;
+
+}
+
+.search-box input{
+
+width:100%;
+padding:15px 20px;
+border:none;
+outline:none;
+border-radius:30px;
+background:rgba(255,255,255,.12);
+border:1px solid rgba(255,255,255,.2);
+color:white;
+font-size:16px;
+
+}
+
+.search-box input::placeholder{
+
+color:#ead5ff;
+
+}
+
+.search-box input:focus{
+
+border:1px solid #d946ef;
+box-shadow:0 0 15px #c026d3;
+
+}
+.order-card{
+
+display:flex;
+gap:30px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+border-radius:20px;
+padding:25px;
+margin-bottom:30px;
+align-items:center;
+box-shadow:0 0 25px rgba(162,89,255,.3);
+
+}
+
+.product-img{
+
+width:180px;
+height:180px;
+object-fit:cover;
+border-radius:18px;
+
+}
+
+.order-details{
+
+flex:1;
+
+}
+
+.order-details h2{
+
+color:white;
+margin-bottom:15px;
+
+}
+
+.order-details p{
+
+color:#ead5ff;
+margin:10px 0;
+
+}
+
+.status{
+
+padding:6px 14px;
+border-radius:20px;
+font-weight:bold;
+
+}
+
+.preparing{
+
+background:#ff9800;
+color:white;
+
+}
+
+.buttons{
+
+margin-top:20px;
+
+}
+
+.track-btn,
+.cancel-btn{
+
+display:inline-block;
+padding:12px 25px;
+margin-right:15px;
+border-radius:30px;
+text-decoration:none;
+font-weight:bold;
+color:white;
+background:linear-gradient(90deg,#7e22ce,#9333ea,#c026d3);
+transition:.3s;
+
+}
+
+.cancel-btn{
+
+background:#555;
+
+}
+
+.track-btn:hover,
+.cancel-btn:hover{
+
+box-shadow:0 0 20px #d946ef;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<img src="logo.jpg" class="logo">
+
+<h1>📦 My Orders</h1>
+
+</div>
+<h1>My Orders</h1>
+<div class="search-box">
+
+<input
+type="text"
+id="searchOrder"
+placeholder="🔍 Search by Product Name or Order ID">
+
+</div>
+<div class="order-card">
+
+<img src="potato.jpg" class="product-img">
+
+<div class="order-details">
+
+<h2>🥔 Fresh Potato</h2>
+
+<p><strong>Order ID:</strong> FX10021</p>
+
+<p><strong>Quantity:</strong> 5 Kg</p>
+
+<p><strong>Total Amount:</strong> ₹175</p>
+
+<p><strong>Order Date:</strong> 13 July 2026</p>
+
+<p><strong>Status:</strong>
+<span class="status preparing">
+Preparing
+</span>
+</p>
+
+<div class="buttons">
+
+<a href="track_order.html" class="track-btn">
+Track Order
+</a>
+
+<a href="#" class="cancel-btn">
+Cancel Order
+</a>
+
+</div>
+
+</div>
+
+</div>
+</body>
+</html>

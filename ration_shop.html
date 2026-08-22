@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ration Shop Integration | FarmXT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#14001f,#2d014d,#4b0082,#6a0dad);
+min-height:100vh;
+color:white;
+}
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+border-bottom:1px solid rgba(255,255,255,.15);
+}
+
+.logo-section{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.logo{
+width:60px;
+height:60px;
+background:white;
+padding:5px;
+border-radius:50%;
+}
+
+.logo-section h2{
+font-size:30px;
+}
+
+.back-btn{
+text-decoration:none;
+padding:12px 25px;
+border-radius:30px;
+background:linear-gradient(90deg,#7e22ce,#9333ea,#c026d3);
+color:white;
+font-weight:bold;
+}
+
+.back-btn:hover{
+box-shadow:0 0 20px #d946ef;
+}
+
+.container{
+width:90%;
+max-width:700px;
+margin:50px auto;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+padding:35px;
+border-radius:25px;
+box-shadow:0 0 30px rgba(162,89,255,.4);
+}
+
+h1{
+text-align:center;
+margin-bottom:30px;
+}
+
+.details{
+margin-bottom:25px;
+}
+
+.details p{
+font-size:18px;
+margin:15px 0;
+color:#ead5ff;
+}
+
+label{
+display:block;
+margin-bottom:10px;
+font-weight:bold;
+font-size:18px;
+}
+
+select{
+width:100%;
+padding:15px;
+border:none;
+outline:none;
+border-radius:12px;
+background:rgba(255,255,255,.12);
+color:white;
+font-size:16px;
+margin-bottom:25px;
+}
+
+select option{
+background:#2d014d;
+color:white;
+}
+
+.price-box{
+background:rgba(255,255,255,.12);
+padding:20px;
+border-radius:15px;
+margin-bottom:30px;
+}
+
+.price-box h2{
+margin-bottom:15px;
+}
+
+.price-box p{
+font-size:18px;
+margin:10px 0;
+}
+
+button{
+width:100%;
+padding:15px;
+border:none;
+border-radius:30px;
+background:linear-gradient(90deg,#7e22ce,#9333ea,#c026d3);
+color:white;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+box-shadow:0 0 20px #d946ef;
+transform:translateY(-3px);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+<div class="logo-section">
+
+<img src="logo.jpg" class="logo">
+
+<h2>FarmXT</h2>
+
+</div>
+
+<a href="market_place.html" class="back-btn">
+⬅ Marketplace
+</a>
+
+</header>
+
+<div class="container">
+
+<h1>🏪 Ration Shop Integration</h1>
+
+<div class="details">
+
+<p><strong>Product :</strong> <span id="productName"></span></p>
+
+<p><strong>Original Price :</strong>
+₹<span id="originalPrice"></span> / Kg
+</p>
+
+</div>
+
+<label>Select Ration Card Type</label>
+
+<select id="cardType" onchange="calculatePrice()">
+
+<option value="">Select Card</option>
+
+<option value="Pink">Pink Card</option>
+
+<option value="White">White Card</option>
+
+<option value="None">No Ration Card</option>
+
+</select>
+
+<div class="price-box">
+
+<h2>Price Details</h2>
+
+<p>
+Original Price :
+₹<span id="price1"></span>
+</p>
+
+<p>
+Discount :
+₹<span id="discount">0</span>
+</p>
+
+<p>
+Final Price :
+₹<span id="finalPrice"></span>
+</p>
+
+</div>
+
+<button onclick="confirmOrder()">
+Place Order Through Ration Shop
+</button>
+
+</div>
+
+<script>
+
+let product=
+JSON.parse(localStorage.getItem("rationProduct"));
+
+document.getElementById("productName").innerHTML=product.name;
+
+document.getElementById("originalPrice").innerHTML=product.price;
+
+document.getElementById("price1").innerHTML=product.price;
+
+document.getElementById("finalPrice").innerHTML=product.price;
+
+function calculatePrice(){
+
+let card=document.getElementById("cardType").value;
+
+let price=parseFloat(product.price);
+
+let discount=0;
+
+if(card=="Pink"){
+
+discount=price*0.50;
+
+}
+
+else if(card=="White"){
+
+discount=price*0.25;
+
+}
+
+else{
+
+discount=0;
+
+}
+
+let finalPrice=price-discount;
+
+document.getElementById("discount").innerHTML=discount.toFixed(2);
+
+document.getElementById("finalPrice").innerHTML=finalPrice.toFixed(2);
+
+}
+
+function confirmOrder(){
+
+let card=document.getElementById("cardType").value;
+
+if(card==""){
+
+alert("Please select a ration card type.");
+
+return;
+
+}
+
+alert("Order placed successfully through Ration Shop.");
+
+window.location.href="post_success.html";
+
+}
+
+</script>
+
+</body>
+</html>

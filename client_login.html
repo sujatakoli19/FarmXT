@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Client Login | FarmXT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:30px;
+background:linear-gradient(135deg,#14001f,#2d014d,#4b0082,#6a0dad);
+
+}
+
+.login-box{
+
+width:420px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.15);
+border-radius:25px;
+padding:35px;
+box-shadow:0 0 35px rgba(162,89,255,.5);
+
+}
+
+.logo{
+
+display:block;
+margin:auto;
+width:110px;
+height:110px;
+padding:8px;
+border-radius:50%;
+background:white;
+box-shadow:0 0 20px #a855f7;
+
+}
+
+h2{
+
+text-align:center;
+color:white;
+margin:20px 0 10px;
+
+}
+
+.subtitle{
+
+text-align:center;
+color:#ead5ff;
+margin-bottom:30px;
+
+}
+
+label{
+
+display:block;
+color:#ead5ff;
+font-weight:600;
+margin-bottom:8px;
+
+}
+
+input{
+
+width:100%;
+padding:14px;
+margin-bottom:18px;
+border-radius:12px;
+border:1px solid rgba(255,255,255,.2);
+background:rgba(255,255,255,.08);
+color:white;
+outline:none;
+font-size:15px;
+
+}
+
+input::placeholder{
+
+color:#d8c8f0;
+
+}
+
+input:focus{
+
+border:1px solid #d946ef;
+box-shadow:0 0 15px #c026d3;
+
+}
+
+button{
+
+width:100%;
+padding:15px;
+border:none;
+border-radius:12px;
+background:linear-gradient(90deg,#7e22ce,#9333ea,#c026d3);
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
+transition:.3s;
+
+}
+
+button:hover{
+
+transform:translateY(-2px);
+box-shadow:0 0 20px #d946ef;
+
+}
+
+.links{
+
+text-align:center;
+margin-top:20px;
+line-height:35px;
+
+}
+
+.links a{
+
+color:white;
+text-decoration:none;
+font-weight:600;
+
+}
+
+.links a:hover{
+
+color:#facc15;
+
+}
+
+#otpSection{
+
+display:none;
+
+}
+
+.timer{
+
+text-align:center;
+color:#fff;
+margin-top:10px;
+font-size:14px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+<img src="logo.jpg" class="logo">
+
+<h2>📱 Client Login</h2>
+
+<p class="subtitle">Login using Mobile OTP</p>
+
+<form id="loginForm">
+
+<label>Mobile Number</label>
+
+<input
+type="tel"
+id="mobile"
+maxlength="10"
+placeholder="Enter Mobile Number"
+required>
+
+<button
+type="button"
+id="sendOtp">
+
+Send OTP
+
+</button>
+
+<div id="otpSection">
+
+<label>Enter OTP</label>
+
+<input
+type="text"
+id="otp"
+maxlength="6"
+placeholder="Enter 6-digit OTP">
+
+<div class="timer" id="timer"></div>
+
+<button type="submit">
+
+Verify OTP & Login
+
+</button>
+
+</div>
+
+</form>
+
+<div class="links">
+
+<p>
+
+New Client?
+
+<a href="client_sign_up.html">
+
+Create Account
+
+</a>
+
+</p>
+
+<p>
+
+<a href="final.html">
+
+🏠 Back to Home
+
+</a>
+
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+let generatedOTP="";
+let seconds=30;
+let timer;
+
+document.getElementById("sendOtp").addEventListener("click",function(){
+
+let mobile=document.getElementById("mobile").value.trim();
+
+if(mobile.length!=10 || isNaN(mobile)){
+    alert("Please enter a valid 10-digit mobile number.");
+    return;
+}
+
+// Check if client exists
+let clients = JSON.parse(localStorage.getItem("clients")) || [];
+
+let client = clients.find(c => c.mobile === mobile);
+
+if(!client){
+    alert("No account found. Please Sign Up first.");
+    return;
+}
+
+generatedOTP=Math.floor(100000+Math.random()*900000).toString();
+
+alert("Demo OTP : "+generatedOTP);
+
+document.getElementById("otpSection").style.display="block";
+
+this.disabled=true;
+
+seconds=30;
+
+document.getElementById("timer").innerHTML="Resend OTP in "+seconds+" sec";
+
+timer=setInterval(function(){
+
+seconds--;
+
+document.getElementById("timer").innerHTML="Resend OTP in "+seconds+" sec";
+
+if(seconds<=0){
+
+clearInterval(timer);
+
+document.getElementById("sendOtp").disabled=false;
+
+document.getElementById("timer").innerHTML="You can resend OTP now.";
+
+}
+
+},1000);
+
+});
+
+document.getElementById("loginForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let enteredOTP=document.getElementById("otp").value.trim();
+if(enteredOTP===generatedOTP){
+
+localStorage.setItem("userType","Client");
+let clients = JSON.parse(localStorage.getItem("clients")) || [];
+
+let client = clients.find(c => c.mobile === document.getElementById("mobile").value.trim());
+
+localStorage.setItem("currentClient", JSON.stringify(client));
+
+alert("Login Successful!");
+
+window.location.href = "client_dashboard.html";
+
+}else{
+
+alert("Invalid OTP!");
+
+}
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<title>FarmXT Marketplace</title>
+
+<style>
+    body{
+
+margin:0;
+padding:0;
+font-family:'Poppins',sans-serif;
+background:linear-gradient(
+135deg,
+#14001f,
+#2d014d,
+#4b0082,
+#6a0dad
+);
+min-height:100vh;
+color:white;
+
+}
+    /* ===== NAVBAR ===== */
+
+.navbar{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 8%;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+border-bottom:1px solid rgba(255,255,255,.15);
+position:sticky;
+top:0;
+z-index:1000;
+
+}
+
+.logo-section{
+
+display:flex;
+align-items:center;
+gap:15px;
+
+}
+
+.logo{
+
+width:60px;
+height:60px;
+border-radius:50%;
+background:white;
+padding:5px;
+box-shadow:0 0 15px #a855f7;
+
+}
+
+.logo-section h2{
+
+color:white;
+font-size:30px;
+
+}
+
+.search-box{
+
+width:40%;
+
+}
+
+.search-box input{
+
+width:100%;
+padding:14px 20px;
+border:none;
+outline:none;
+border-radius:30px;
+background:rgba(255,255,255,.12);
+color:white;
+font-size:16px;
+border:1px solid rgba(255,255,255,.2);
+
+}
+
+.search-box input::placeholder{
+
+color:#ead5ff;
+
+}
+
+.search-box input:focus{
+
+border:1px solid #d946ef;
+box-shadow:0 0 15px #c026d3;
+
+}
+
+.nav-icons{
+
+display:flex;
+align-items:center;
+gap:20px;
+
+}
+
+.nav-icons a{
+
+text-decoration:none;
+color:white;
+font-size:18px;
+font-weight:bold;
+transition:.3s;
+
+}
+
+.nav-icons a:hover{
+
+color:#facc15;
+
+}
+
+.logout{
+
+background:linear-gradient(90deg,#7e22ce,#9333ea,#c026d3);
+padding:10px 18px;
+border-radius:25px;
+
+}
+
+.logout:hover{
+
+box-shadow:0 0 20px #d946ef;
+}
+/* ===== HERO SECTION ===== */
+
+.hero{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:80px 8%;
+gap:50px;
+
+}
+
+.hero-text{
+
+flex:1;
+
+}
+
+.hero-text h1{
+
+font-size:55px;
+color:white;
+margin-bottom:20px;
+line-height:1.2;
+
+}
+
+.hero-text p{
+
+font-size:18px;
+color:#ead5ff;
+line-height:30px;
+margin-bottom:30px;
+
+}
+
+.hero-btn{
+
+display:inline-block;
+padding:15px 35px;
+background:linear-gradient(90deg,#7e22ce,#9333ea,#c026d3);
+color:white;
+text-decoration:none;
+border-radius:30px;
+font-weight:bold;
+transition:.3s;
+
+}
+
+.hero-btn:hover{
+
+box-shadow:0 0 20px #d946ef;
+transform:translateY(-3px);
+
+}
+
+.hero-image{
+
+flex:1;
+text-align:center;
+
+}
+
+.hero-image img{
+
+width:100%;
+max-width:500px;
+border-radius:25px;
+box-shadow:0 0 35px rgba(162,89,255,.5);
+
+}
+
+
+
+/* ===== FEATURED PRODUCTS ===== */
+
+.products{
+
+padding:80px 8%;
+
+}
+
+.products h2{
+
+text-align:center;
+font-size:40px;
+margin-bottom:45px;
+color:white;
+
+}
+
+.product-container{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+
+}
+
+.product-card{
+
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.15);
+border-radius:20px;
+padding:20px;
+text-align:center;
+transition:.3s;
+
+}
+
+.product-card:hover{
+
+transform:translateY(-10px);
+box-shadow:0 0 25px #d946ef;
+
+}
+
+.product-card img{
+
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:15px;
+margin-bottom:15px;
+
+}
+
+.product-card h3{
+
+color:white;
+margin-bottom:10px;
+
+}
+
+.product-card p{
+
+color:#ead5ff;
+margin:8px 0;
+
+}
+
+.product-card h4{
+
+color:#facc15;
+font-size:24px;
+margin:15px 0;
+
+}
+
+.buy-btn{
+
+display:inline-block;
+padding:12px 28px;
+background:linear-gradient(90deg,#7e22ce,#9333ea,#c026d3);
+color:white;
+text-decoration:none;
+border-radius:30px;
+font-weight:bold;
+transition:.3s;
+
+}
+.fav-btn{
+
+margin-top:12px;
+padding:12px 20px;
+width:100%;
+border:none;
+border-radius:25px;
+background:#ff4081;
+color:white;
+font-size:15px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+
+}
+
+.fav-btn:hover{
+
+background:#e91e63;
+box-shadow:0 0 20px #ff66b2;
+
+}
+
+.buy-btn:hover{
+
+box-shadow:0 0 20px #d946ef;
+
+}
+
+
+
+
+/* ===== FOOTER ===== */
+
+.footer{
+    background: rgba(255,255,255,.08);
+    padding:50px 8%;
+    margin-top:60px;
+}
+
+.footer-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:30px;
+}
+
+.footer-box h3{
+    color:#facc15;
+    margin-bottom:15px;
+}
+
+.footer-box p,
+.footer-box a{
+    color:#ead5ff;
+    text-decoration:none;
+    display:block;
+    margin:8px 0;
+}
+
+.footer-box a:hover{
+    color:#ffffff;
+}
+
+.footer hr{
+    margin:30px 0;
+    border:1px solid rgba(255,255,255,.15);
+}
+
+.copyright{
+    text-align:center;
+    color:#ccc;
+}
+
+</style>
+</head>
+<body>
+<!-- ===== NAVBAR ===== -->
+
+<header class="navbar">
+
+    <div class="logo-section">
+
+        <img src="logo.jpg" class="logo">
+
+        <h2>FarmXT</h2>
+
+    </div>
+
+    <div class="search-box">
+
+<input type="text"
+id="searchInput"
+placeholder="🔍 Search products..."
+onkeyup="searchProducts()">
+
+    </div>
+
+   <div class="nav-icons">
+
+    <a href="#">🔔</a>
+    <a href="favorites.html">❤️ Favorites</a> 
+    <a href="final.html" class="logout">Logout</a>
+
+</div>
+</header>
+<section class="hero">
+
+<div class="hero-text">
+
+<h1>Fresh From Farmers,<br>Direct To You</h1>
+
+<p>
+Buy fresh fruits, vegetables and grains directly from trusted farmers at fair prices.
+</p>
+
+<a href="#products" class="hero-btn">Explore Products</a>
+
+</div>
+
+
+<div class="hero-image">
+
+<img src="farmer.jpeg" alt="Farmer">
+
+</div>
+
+</section>
+
+<section class="products" id="products">
+
+<h2>Featured Products</h2>
+
+<div class="product-container" id="productContainer">
+
+</div>
+
+</section>
+
+
+
+<footer class="footer">
+
+<div class="footer-container">
+
+<div class="footer-box">
+
+<h3>🌾 FarmXT</h3>
+
+<p>
+Connecting farmers directly with consumers, retailers, MSMEs and businesses to ensure fair prices and better opportunities.
+</p>
+
+</div>
+
+<div class="footer-box">
+
+<h3>Quick Links</h3>
+
+<a href="index.html">Home</a>
+<a href="market_place.html">Marketplace</a>
+<a href="community_feed.html">Community Feed</a>
+<a href="contact.html">Contact</a>
+
+</div>
+
+<div class="footer-box">
+
+<h3>Contact</h3>
+
+<p>📧 support@farmxt.com</p>
+
+<p>📞 +91 9876543210</p>
+
+<p>📍 Mumbai, Maharashtra</p>
+
+</div>
+
+<div class="footer-box">
+
+<h3>Follow Us</h3>
+
+<p>📘 Facebook</p>
+
+<p>📸 Instagram</p>
+
+<p>💼 LinkedIn</p>
+
+<p>▶ YouTube</p>
+
+</div>
+
+</div>
+
+<hr>
+
+<p class="copyright">
+© 2026 FarmXT. All Rights Reserved.
+</p>
+
+</footer>
+<script>
+let crops = JSON.parse(localStorage.getItem("crops")) || [];
+
+let container = document.getElementById("productContainer");
+if(crops.length === 0){
+    container.innerHTML = "<h2 style='color:white;text-align:center;'>No Products Available</h2>";
+}
+
+crops.forEach(function(crop){
+
+container.innerHTML += `
+
+<div class="product-card">
+
+<img src="${crop.image || 'default.jpg'}">
+
+<h3>${crop.product}</h3>
+
+<p>👨‍🌾 Farmer: ${crop.farmerName}</p>
+
+
+
+<p>🌿 ${crop.produceType}</p>
+
+<h4>₹${crop.price} / Kg</h4>
+
+<button class="buy-btn"
+onclick="buyProduct(
+'${crop.product}',
+'${crop.farmerName}',
+'${crop.price}',
+'${crop.image}',
+'${crop.farmerId}'
+)">
+Buy Now
+</button>
+
+
+<button class="fav-btn"
+onclick="addFavorite(
+'${crop.product}',
+'${crop.farmerName}',
+'${crop.farmerMobile}',
+'${crop.price}',
+'${crop.image}'
+)">
+❤️ Add to Favorites
+</button>
+
+<button class="fav-btn"
+onclick="addFavoriteFarmer(
+'${crop.farmerName}',
+'${crop.farmerMobile}'
+)">
+👨‍🌾 Favorite Farmer
+</button>
+
+</div>
+
+`;
+});
+
+function addFavorite(name, farmer, mobile, price, image){
+
+let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+if(favorites.some(item => item.name === name && item.farmer === farmer)){
+    alert("Already Added");
+    return;
+}
+
+favorites.push({
+    name: name,
+    farmer: farmer,
+    mobile: mobile,
+    price: price,
+    image: image
+});
+
+localStorage.setItem("favorites", JSON.stringify(favorites));
+
+alert("Added to Favorites");
+
+}
+function addFavoriteFarmer(name, mobile){
+
+let favoriteFarmers =
+JSON.parse(localStorage.getItem("favoriteFarmers")) || [];
+
+if(favoriteFarmers.some(f => f.mobile === mobile)){
+    alert("Farmer already added.");
+    return;
+}
+
+favoriteFarmers.push({
+    name:name,
+    mobile:mobile
+});
+
+localStorage.setItem(
+"favoriteFarmers",
+JSON.stringify(favoriteFarmers)
+);
+
+alert("Farmer added to Favorites.");
+}
+
+function buyProduct(name, farmer, price, image, farmerId){
+
+    let product = {
+
+        name: name,
+
+        farmer: farmer,
+
+        farmerId: farmerId,
+
+        price: price,
+
+        image: image
+
+    };
+
+    localStorage.setItem(
+        "selectedProduct",
+        JSON.stringify(product)
+    );
+
+    window.location.href = "buy.html";
+
+}
+/* ADD THIS FUNCTION HERE */
+
+
+
+/* THEN YOUR SEARCH FUNCTION */
+
+function searchProducts(){
+
+let input = document.getElementById("searchInput").value.toLowerCase();
+
+let cards = document.querySelectorAll(".product-card");
+
+cards.forEach(function(card){
+
+let product = card.querySelector("h3").innerText.toLowerCase();
+
+if(product.includes(input)){
+card.style.display = "block";
+}
+else{
+card.style.display = "none";
+}
+
+});
+
+}
+
+</script>
+</body>
+
+</html>

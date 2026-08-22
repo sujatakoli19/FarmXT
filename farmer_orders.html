@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Farmer Orders | FarmXT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(
+        135deg,
+        #14001f,
+        #2d014d,
+        #4b0082,
+        #6a0dad
+    );
+    min-height:100vh;
+    color:white;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(255,255,255,.15);
+}
+
+.logo-section{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logo{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:white;
+    padding:5px;
+}
+
+.logo-section h2{
+    font-size:30px;
+}
+
+nav{
+    display:flex;
+    gap:25px;
+    align-items:center;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#facc15;
+}
+
+.logout{
+    padding:10px 18px;
+    border-radius:25px;
+    background:linear-gradient(
+        90deg,
+        #7e22ce,
+        #9333ea,
+        #c026d3
+    );
+}
+
+/* ================= ORDERS ================= */
+
+.orders-section{
+    padding:50px 8%;
+}
+
+.orders-section h1{
+    text-align:center;
+    margin-bottom:40px;
+    font-size:40px;
+}
+
+.orders-container{
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fit,minmax(320px,1fr));
+    gap:25px;
+}
+
+/* ================= ORDER CARD ================= */
+
+.order-card{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:25px;
+    padding:30px;
+    box-shadow:0 0 25px rgba(162,89,255,.4);
+    transition:.3s;
+}
+
+.order-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 0 30px #d946ef;
+}
+
+.order-card h2{
+    margin-bottom:20px;
+    color:#facc15;
+}
+
+.order-card p{
+    margin:12px 0;
+    font-size:16px;
+    color:#ead5ff;
+    line-height:1.6;
+}
+
+.order-card strong{
+    color:white;
+}
+
+.status{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:20px;
+    font-weight:bold;
+    background:rgba(250,204,21,.15);
+    color:#facc15;
+}
+
+/* ================= BUTTONS ================= */
+
+.buttons{
+    display:flex;
+    gap:10px;
+    margin-top:25px;
+    flex-wrap:wrap;
+}
+
+.accept-btn,
+.reject-btn,
+.ship-btn{
+
+    flex:1;
+
+    padding:12px 15px;
+
+    border:none;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    color:white;
+
+    transition:.3s;
+}
+
+.accept-btn{
+    background:linear-gradient(
+        90deg,
+        #059669,
+        #10b981,
+        #22c55e
+    );
+}
+
+.reject-btn{
+    background:linear-gradient(
+        90deg,
+        #dc2626,
+        #ef4444,
+        #f87171
+    );
+}
+
+.ship-btn{
+    background:linear-gradient(
+        90deg,
+        #2563eb,
+        #3b82f6,
+        #60a5fa
+    );
+}
+
+.accept-btn:hover,
+.reject-btn:hover,
+.ship-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 20px rgba(255,255,255,.3);
+}
+
+button:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+    transform:none;
+    box-shadow:none;
+}
+
+/* ================= EMPTY ================= */
+
+.empty-orders{
+
+    text-align:center;
+
+    padding:60px 30px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:25px;
+
+}
+
+.empty-orders h2{
+    margin-bottom:15px;
+}
+
+.empty-orders p{
+    color:#ead5ff;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:800px){
+
+    .navbar{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    nav{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .orders-section h1{
+        font-size:32px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo-section">
+
+        <img src="logo.jpg" class="logo">
+
+        <h2>FarmXT</h2>
+
+    </div>
+
+    <nav>
+
+        <a href="farmer_dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="featured-listings.html">
+            My Crops
+        </a>
+
+        <a href="farmer_profile.html">
+            Profile
+        </a>
+
+        <a href="contact.html">
+            Support
+        </a>
+
+        <a href="final.html" class="logout">
+            Logout
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- ================= ORDERS ================= -->
+
+<section class="orders-section">
+
+    <h1>📦 Orders Received</h1>
+
+    <div
+        class="orders-container"
+        id="ordersContainer">
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =====================================================
+   CHECK FARMER LOGIN
+===================================================== */
+
+let farmer =
+    JSON.parse(
+        localStorage.getItem("currentFarmer")
+    );
+
+if(!farmer){
+
+    alert("Please login as a Farmer first.");
+
+    window.location.href =
+        "farmer_login.html";
+}
+
+
+/* =====================================================
+   LOAD FARMER ORDERS
+===================================================== */
+
+function loadOrders(){
+
+    let orders =
+        JSON.parse(
+            localStorage.getItem("orders")
+        ) || [];
+
+    let container =
+        document.getElementById(
+            "ordersContainer"
+        );
+
+    container.innerHTML = "";
+
+
+    /* =================================================
+       FIND ORDERS BELONGING TO THIS FARMER
+    ================================================= */
+
+let farmerOrders =
+orders.filter(function(order){
+
+    return String(order.farmerId).trim() ===
+           String(farmer.id).trim();
+
+});
+
+    /* =================================================
+       NO ORDERS
+    ================================================= */
+
+    if(farmerOrders.length === 0){
+
+        container.innerHTML = `
+
+            <div class="empty-orders">
+
+                <h2>
+                    📭 No Orders Received
+                </h2>
+
+                <p>
+                    You currently have no orders
+                    from customers.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* =================================================
+       DISPLAY ORDERS
+    ================================================= */
+
+    farmerOrders.forEach(function(order){
+
+        let status =
+            order.status || "Pending";
+
+
+        let card =
+            document.createElement("div");
+
+        card.className =
+            "order-card";
+
+
+        card.innerHTML = `
+
+    <h2>
+        📦 Order #${escapeHTML(
+            order.orderId || "N/A"
+        )}
+    </h2>
+
+    <p>
+        <strong>👤 Buyer Name:</strong>
+        ${escapeHTML(
+            order.buyerName ||
+            "Not Available"
+        )}
+    </p>
+
+    <p>
+        🌾 <strong>Product:</strong>
+        ${escapeHTML(
+            order.productName ||
+            "Not Available"
+        )}
+    </p>
+
+    <p>
+        <strong>📦 Quantity:</strong>
+        ${escapeHTML(
+            order.quantity ||
+            "0"
+        )} Kg
+    </p>
+
+    <p>
+        <strong>📍 Delivery Address:</strong>
+        ${escapeHTML(
+            order.address ||
+            "Not Available"
+        )}
+    </p>
+
+    <p>
+        <strong>💳 Payment Method:</strong>
+        ${escapeHTML(
+            order.paymentMethod ||
+            "Not Available"
+        )}
+    </p>
+
+    <p>
+        <strong>💰 Price:</strong>
+        ₹${escapeHTML(
+            order.price ||
+            "0"
+        )}
+    </p>
+
+    <p>
+        <strong>📅 Order Date:</strong>
+        ${escapeHTML(
+            order.date ||
+            "Not Available"
+        )}
+    </p>
+
+    <p>
+        <strong>Order Status:</strong>
+
+        <span class="status">
+
+            ${escapeHTML(status)}
+
+        </span>
+
+    </p>
+
+    <div class="buttons">
+
+        <button
+            class="accept-btn"
+            onclick="acceptOrder('${order.orderId}')"
+            ${status !== "Pending" ? "disabled" : ""}>
+
+            ✅ Accept
+
+        </button>
+
+        <button
+            class="reject-btn"
+            onclick="rejectOrder('${order.orderId}')"
+            ${status !== "Pending" ? "disabled" : ""}>
+
+            ❌ Reject
+
+        </button>
+
+        <button
+            class="ship-btn"
+            onclick="shipOrder('${order.orderId}')"
+            ${status !== "Accepted" ? "disabled" : ""}>
+
+            🚚 Mark Shipped
+
+        </button>
+
+    </div>
+
+`;
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   ACCEPT ORDER
+===================================================== */
+
+function acceptOrder(orderId){
+
+    let orders =
+        JSON.parse(
+            localStorage.getItem("orders")
+        ) || [];
+
+
+    let order =
+        orders.find(function(item){
+
+            return String(item.orderId) ===
+       String(orderId);
+
+        });
+
+
+    if(!order){
+        alert("Order not found.");
+        return;
+    }
+
+
+    order.status =
+        "Accepted";
+
+
+    order.acceptedAt =
+        new Date().toLocaleString();
+
+
+    localStorage.setItem(
+        "orders",
+        JSON.stringify(orders)
+    );
+
+
+    alert(
+        "✅ Order Accepted Successfully!"
+    );
+
+
+    loadOrders();
+
+}
+
+
+/* =====================================================
+   REJECT ORDER
+===================================================== */
+
+function rejectOrder(orderId){
+
+    let confirmation =
+        confirm(
+            "Are you sure you want to reject this order?"
+        );
+
+
+    if(!confirmation){
+        return;
+    }
+
+
+    let orders =
+        JSON.parse(
+            localStorage.getItem("orders")
+        ) || [];
+
+
+    let order =
+        orders.find(function(item){
+
+            return String(item.orderId) ===
+       String(orderId);
+
+        });
+
+
+    if(!order){
+        alert("Order not found.");
+        return;
+    }
+
+
+    order.status =
+        "Rejected";
+
+
+    order.rejectedAt =
+        new Date().toLocaleString();
+
+
+    localStorage.setItem(
+        "orders",
+        JSON.stringify(orders)
+    );
+
+
+    alert(
+        "❌ Order Rejected."
+    );
+
+
+    loadOrders();
+
+}
+
+
+/* =====================================================
+   MARK SHIPPED
+===================================================== */
+
+function shipOrder(orderId){
+
+    let orders =
+        JSON.parse(
+            localStorage.getItem("orders")
+        ) || [];
+
+
+    let order =
+        orders.find(function(item){
+
+            return String(item.orderId) ===
+       String(orderId);
+
+        });
+
+
+    if(!order){
+        alert("Order not found.");
+        return;
+    }
+
+
+    if(order.status !== "Accepted"){
+
+        alert(
+            "Please accept the order first."
+        );
+
+        return;
+
+    }
+
+
+    order.status =
+        "Shipped";
+
+
+    order.shippedAt =
+        new Date().toLocaleString();
+
+
+    localStorage.setItem(
+        "orders",
+        JSON.stringify(orders)
+    );
+
+
+    alert(
+        "🚚 Order marked as Shipped!"
+    );
+
+
+    loadOrders();
+
+}
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+if(farmer){
+
+    loadOrders();
+
+}
+
+</script>
+
+</body>
+</html>

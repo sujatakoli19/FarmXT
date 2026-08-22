@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FarmXT | Purchase Limit</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#14001f,#2d014d,#4b0082,#6a0dad);
+min-height:100vh;
+color:white;
+overflow-x:hidden;
+}
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:15px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(20,0,31,.45);
+backdrop-filter:blur(15px);
+z-index:1000;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+font-size:28px;
+font-weight:bold;
+}
+
+.logo img{
+width:55px;
+height:55px;
+border-radius:50%;
+background:white;
+padding:5px;
+}
+
+nav{
+display:flex;
+gap:25px;
+}
+
+nav a{
+text-decoration:none;
+color:white;
+transition:.3s;
+}
+
+nav a:hover{
+color:#facc15;
+}
+
+.container{
+padding:120px 20px 80px;
+display:flex;
+justify-content:center;
+}
+
+.card{
+width:500px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.15);
+border-radius:20px;
+padding:30px;
+}
+
+.card h2{
+text-align:center;
+margin-bottom:25px;
+}
+
+label{
+display:block;
+margin-top:15px;
+margin-bottom:6px;
+}
+
+select,input{
+width:100%;
+padding:12px;
+border:none;
+border-radius:10px;
+font-size:15px;
+outline:none;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:25px;
+border:none;
+border-radius:30px;
+background:linear-gradient(90deg,#7e22ce,#9333ea,#c026d3);
+color:white;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+box-shadow:0 0 20px #d946ef;
+}
+
+#result{
+margin-top:20px;
+padding:18px;
+background:rgba(255,255,255,.08);
+border-radius:15px;
+text-align:center;
+font-size:17px;
+}
+
+footer{
+text-align:center;
+padding:18px;
+background:rgba(20,0,31,.45);
+backdrop-filter:blur(10px);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+<img src="logo.jpg">
+<span>FarmXT</span>
+</div>
+
+<nav>
+
+<a href="final.html">Home</a>
+<a href="market_place.html">Marketplace</a>
+<a href="purchase_limit.html">Purchase Limit</a>
+<a href="contact.html">Contact</a>
+
+</nav>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>📦 Product Purchase Limit</h2>
+
+<label>Select Product</label>
+
+<select id="product">
+<option>Tomato</option>
+<option>Potato</option>
+<option>Corn</option>
+<option>Spinach</option>
+</select>
+
+<label>Available Stock (Kg)</label>
+
+<input type="number" id="stock" value="100" readonly>
+
+<label>Enter Purchase Quantity (Kg)</label>
+
+<input type="number" id="qty">
+
+<button onclick="checkPurchase()">
+
+Purchase Product
+
+</button>
+
+<div id="result">
+
+Purchase status will appear here.
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+©2026 FarmXT | Purchase Limit
+
+</footer>
+
+<script>
+
+function checkPurchase(){
+
+let stock=Number(document.getElementById("stock").value);
+
+let qty=Number(document.getElementById("qty").value);
+
+if(qty==""){
+
+alert("Enter quantity");
+
+return;
+
+}
+
+if(qty<=0){
+
+alert("Quantity should be greater than zero");
+
+return;
+
+}
+
+if(qty>stock){
+
+document.getElementById("result").innerHTML=
+
+"<h3 style='color:red;'>❌ Purchase Failed</h3><p>Requested quantity exceeds available stock.</p>";
+
+return;
+
+}
+
+let remaining=stock-qty;
+
+document.getElementById("result").innerHTML=
+
+`
+<h3 style="color:#7CFC00;">✅ Purchase Successful</h3>
+
+<p><b>Purchased :</b> ${qty} Kg</p>
+
+<p><b>Remaining Stock :</b> ${remaining} Kg</p>
+
+`;
+
+document.getElementById("stock").value=remaining;
+
+document.getElementById("qty").value="";
+
+}
+
+</script>
+
+</body>
+
+</html>

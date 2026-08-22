@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Terms & Conditions | FarmXT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:linear-gradient(135deg,#14001f,#2d014d,#4b0082,#6a0dad);
+min-height:100vh;
+color:white;
+
+}
+
+header{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+border-bottom:1px solid rgba(255,255,255,.15);
+
+}
+
+.logo{
+
+display:flex;
+align-items:center;
+gap:15px;
+
+}
+
+.logo img{
+
+width:60px;
+height:60px;
+border-radius:50%;
+background:white;
+padding:5px;
+
+}
+
+.logo h2{
+
+font-size:28px;
+
+}
+
+.back-btn{
+
+text-decoration:none;
+padding:12px 25px;
+background:linear-gradient(90deg,#7e22ce,#9333ea,#c026d3);
+color:white;
+border-radius:30px;
+font-weight:bold;
+transition:.3s;
+
+}
+
+.back-btn:hover{
+
+box-shadow:0 0 20px #d946ef;
+
+}
+
+.container{
+
+width:90%;
+max-width:950px;
+margin:50px auto;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.15);
+border-radius:25px;
+padding:40px;
+
+}
+
+.container h1{
+
+text-align:center;
+margin-bottom:15px;
+font-size:42px;
+
+}
+
+.container p{
+
+text-align:center;
+color:#ead5ff;
+margin-bottom:30px;
+font-size:18px;
+line-height:30px;
+
+}
+
+#terms{
+
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.15);
+border-radius:15px;
+padding:25px;
+white-space:pre-wrap;
+line-height:32px;
+font-size:17px;
+color:white;
+
+}
+
+footer{
+
+margin-top:50px;
+padding:20px;
+text-align:center;
+background:rgba(255,255,255,.08);
+color:#ead5ff;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<img src="logo.jpg" alt="FarmXT Logo">
+
+<h2>FarmXT</h2>
+
+</div>
+
+<a href="final.html" class="back-btn">
+
+🏠 Back to Home
+
+</a>
+
+</header>
+
+<div class="container">
+
+<h1>📜 Terms & Conditions</h1>
+
+<p>
+
+Please read these Terms & Conditions carefully before using the FarmXT platform.
+
+</p>
+
+<div id="terms"></div>
+
+</div>
+
+<footer>
+
+© 2026 FarmXT | All Rights Reserved
+
+</footer>
+
+<script>
+
+// Default Terms
+
+const defaultTerms = `Welcome to FarmXT
+
+1. Farmers must provide genuine crop details and accurate profile information.
+
+2. Buyers must complete payments honestly and follow platform rules.
+
+3. Fraudulent activities, fake products, or misuse of the platform are strictly prohibited.
+
+4. Users must communicate respectfully with other members.
+
+5. FarmXT reserves the right to suspend or permanently remove accounts that violate platform policies.
+
+6. Product prices are determined by the seller unless otherwise specified.
+
+7. Transport and logistics charges may vary depending on distance and service provider.
+
+8. FarmXT is not responsible for delays or losses caused by natural disasters or third-party logistics providers.
+
+9. Users are responsible for maintaining the confidentiality of their login credentials.
+
+10. By using FarmXT, you agree to comply with all Terms & Conditions and future updates made by the platform administrator.`;
+
+// Load latest Terms saved by Admin
+
+let savedTerms = localStorage.getItem("termsConditions");
+
+if(savedTerms){
+
+document.getElementById("terms").textContent = savedTerms;
+
+}else{
+
+document.getElementById("terms").textContent = defaultTerms;
+
+}
+
+</script>
+
+</body>
+
+</html>

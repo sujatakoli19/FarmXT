@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Favorites | FarmXT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(
+        135deg,
+        #14001f,
+        #2d014d,
+        #4b0082,
+        #6a0dad
+    );
+    color:white;
+    min-height:100vh;
+}
+
+/* ===== NAVBAR ===== */
+
+.navbar{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:20px 8%;
+
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(255,255,255,.15);
+
+}
+
+.logo-section{
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+}
+
+.logo{
+
+    width:60px;
+    height:60px;
+
+    border-radius:50%;
+    background:white;
+    padding:5px;
+
+}
+
+.logo-section h2{
+
+    font-size:30px;
+
+}
+
+.back-btn{
+
+    text-decoration:none;
+
+    padding:12px 25px;
+
+    border-radius:30px;
+
+    background:linear-gradient(
+        90deg,
+        #7e22ce,
+        #9333ea,
+        #c026d3
+    );
+
+    color:white;
+
+    font-weight:bold;
+
+}
+
+.back-btn:hover{
+
+    box-shadow:0 0 20px #d946ef;
+
+}
+
+/* ===== PAGE HEADING ===== */
+
+.heading{
+
+    text-align:center;
+
+    padding:45px 20px 30px;
+
+}
+
+.heading h1{
+
+    font-size:42px;
+
+    margin-bottom:10px;
+
+}
+
+.heading p{
+
+    color:#ead5ff;
+
+}
+
+/* ===== SECTION ===== */
+
+.favorite-section{
+
+    width:90%;
+
+    margin:auto;
+
+    padding:30px 0 60px;
+
+}
+
+.section-title{
+
+    text-align:center;
+
+    font-size:36px;
+
+    margin-bottom:35px;
+
+    color:white;
+
+}
+
+/* ===== CARDS CONTAINER ===== */
+
+.container{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:30px;
+
+}
+
+/* ===== PRODUCT CARD ===== */
+
+.card{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:20px;
+
+    padding:20px;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 0 25px #d946ef;
+
+}
+
+.product-card img{
+
+    width:100%;
+
+    height:220px;
+
+    object-fit:cover;
+
+    border-radius:15px;
+
+    margin-bottom:15px;
+
+}
+
+.card h3{
+
+    margin-bottom:10px;
+
+    color:white;
+
+}
+
+.card p{
+
+    margin:8px 0;
+
+    color:#ead5ff;
+
+}
+
+.price{
+
+    font-size:24px;
+
+    color:#facc15;
+
+    margin:15px 0;
+
+}
+
+/* ===== BUTTONS ===== */
+
+.buy-btn,
+.remove-btn,
+.profile-btn{
+
+    display:block;
+
+    width:100%;
+
+    padding:12px;
+
+    margin-top:12px;
+
+    border:none;
+
+    border-radius:30px;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    color:white;
+
+}
+
+.buy-btn{
+
+    background:linear-gradient(
+        90deg,
+        #7e22ce,
+        #9333ea,
+        #c026d3
+    );
+
+}
+
+.profile-btn{
+
+    background:#2563eb;
+
+}
+
+.remove-btn{
+
+    background:#dc2626;
+
+}
+
+.buy-btn:hover,
+.profile-btn:hover,
+.remove-btn:hover{
+
+    opacity:.9;
+
+}
+
+/* ===== FARMER CARD ===== */
+
+.farmer-card{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+.farmer-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 0 25px #d946ef;
+
+}
+
+.farmer-icon{
+
+    font-size:60px;
+
+    margin-bottom:15px;
+
+}
+
+.farmer-card h3{
+
+    color:#facc15;
+
+    font-size:24px;
+
+    margin-bottom:12px;
+
+}
+
+.farmer-card p{
+
+    color:#ead5ff;
+
+    margin:8px 0;
+
+}
+
+/* ===== EMPTY MESSAGE ===== */
+
+.empty{
+
+    grid-column:1/-1;
+
+    text-align:center;
+
+    font-size:20px;
+
+    color:#ead5ff;
+
+    padding:50px;
+
+    background:rgba(255,255,255,.05);
+
+    border-radius:20px;
+
+}
+
+/* ===== DIVIDER ===== */
+
+.section-divider{
+
+    width:90%;
+
+    margin:10px auto;
+
+    border:none;
+
+    border-top:1px solid rgba(255,255,255,.2);
+
+}
+
+/* ===== FOOTER ===== */
+
+.footer{
+
+    background:rgba(255,255,255,.08);
+
+    padding:30px;
+
+    margin-top:30px;
+
+    text-align:center;
+
+    border-top:1px solid rgba(255,255,255,.15);
+
+}
+
+.footer p{
+
+    color:#ead5ff;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- ===== NAVBAR ===== -->
+
+<header class="navbar">
+
+    <div class="logo-section">
+
+        <img src="logo.jpg" class="logo">
+
+        <h2>FarmXT</h2>
+
+    </div>
+
+    <a href="market_place.html" class="back-btn">
+        ⬅ Marketplace
+    </a>
+
+</header>
+
+
+<!-- ===== PAGE HEADING ===== -->
+
+<section class="heading">
+
+    <h1>❤️ My Favorites</h1>
+
+    <p>
+        Manage your favorite products and favorite farmers.
+    </p>
+
+</section>
+
+
+<!-- ================================================= -->
+<!--              FAVORITE PRODUCTS                    -->
+<!-- ================================================= -->
+
+<section class="favorite-section">
+
+    <h2 class="section-title">
+        ❤️ Favorite Products
+    </h2>
+
+    <div
+        id="favoriteContainer"
+        class="container">
+    </div>
+
+</section>
+
+
+<hr class="section-divider">
+
+
+<!-- ================================================= -->
+<!--              FAVORITE FARMERS                     -->
+<!-- ================================================= -->
+
+<section class="favorite-section">
+
+    <h2 class="section-title">
+        👨‍🌾 Favorite Farmers
+    </h2>
+
+    <div
+        id="farmerContainer"
+        class="container">
+    </div>
+
+</section>
+
+
+<!-- ===== FOOTER ===== -->
+
+<footer class="footer">
+
+    <p>
+        © 2026 FarmXT | Connecting Farmers and Buyers
+    </p>
+
+</footer>
+
+
+<script>
+
+
+/* ================================================= */
+/*              FAVORITE PRODUCTS                    */
+/* ================================================= */
+
+
+let favorites =
+    JSON.parse(
+        localStorage.getItem("favorites")
+    ) || [];
+
+
+let favoriteContainer =
+    document.getElementById(
+        "favoriteContainer"
+    );
+
+
+displayFavorites();
+
+
+function displayFavorites(){
+
+    favoriteContainer.innerHTML = "";
+
+
+    if(favorites.length === 0){
+
+        favoriteContainer.innerHTML = `
+
+            <div class="empty">
+
+                ❤️ No Favorite Products Yet
+
+                <br><br>
+
+                Go to the Marketplace and
+                add products to your favorites.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    favorites.forEach(
+        function(product,index){
+
+            favoriteContainer.innerHTML += `
+
+                <div class="card product-card">
+
+                    <img
+                        src="${product.image || 'default.jpg'}"
+                        alt="${product.name}"
+                    >
+
+                    <h3>
+                        ${product.name}
+                    </h3>
+
+                    <p>
+                        👨‍🌾 Farmer:
+                        ${product.farmer}
+                    </p>
+
+                    <p>
+                        📱 ${product.mobile}
+                    </p>
+
+                    <div class="price">
+
+                        ₹${product.price} / Kg
+
+                    </div>
+
+
+                    <button
+                        class="buy-btn"
+                        onclick="buyProduct(${index})">
+
+                        🛒 Buy Now
+
+                    </button>
+
+
+                    <button
+                        class="remove-btn"
+                        onclick="removeFavorite(${index})">
+
+                        ❌ Remove
+
+                    </button>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+}
+
+
+/* ===== REMOVE FAVORITE PRODUCT ===== */
+
+
+function removeFavorite(index){
+
+    favorites.splice(index,1);
+
+
+    localStorage.setItem(
+        "favorites",
+        JSON.stringify(favorites)
+    );
+
+
+    displayFavorites();
+
+}
+
+
+/* ===== BUY FAVORITE PRODUCT ===== */
+
+
+function buyProduct(index){
+
+    let product =
+        favorites[index];
+
+
+    localStorage.setItem(
+        "selectedProduct",
+        JSON.stringify(product)
+    );
+
+
+    window.location.href =
+        "buy.html";
+
+}
+
+
+
+/* ================================================= */
+/*              FAVORITE FARMERS                     */
+/* ================================================= */
+
+
+let favoriteFarmers =
+    JSON.parse(
+        localStorage.getItem(
+            "favoriteFarmers"
+        )
+    ) || [];
+
+
+let farmerContainer =
+    document.getElementById(
+        "farmerContainer"
+    );
+
+
+displayFavoriteFarmers();
+
+
+function displayFavoriteFarmers(){
+
+    farmerContainer.innerHTML = "";
+
+
+    if(favoriteFarmers.length === 0){
+
+        farmerContainer.innerHTML = `
+
+            <div class="empty">
+
+                👨‍🌾 No Favorite Farmers Yet
+
+                <br><br>
+
+                Go to the Marketplace and
+                favorite a farmer.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    favoriteFarmers.forEach(
+        function(farmer,index){
+
+            farmerContainer.innerHTML += `
+
+                <div class="farmer-card">
+
+                    <div class="farmer-icon">
+                        👨‍🌾
+                    </div>
+
+
+                    <h3>
+                        ${farmer.name}
+                    </h3>
+
+
+                    <p>
+                        📱 ${farmer.mobile}
+                    </p>
+
+
+                    <button
+                        class="profile-btn"
+                        onclick="viewFarmer('${farmer.mobile}')">
+
+                        👤 View Farmer
+
+                    </button>
+
+
+                    <button
+                        class="remove-btn"
+                        onclick="removeFarmer(${index})">
+
+                        ❌ Remove
+
+                    </button>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+}
+
+
+/* ===== REMOVE FAVORITE FARMER ===== */
+
+
+function removeFarmer(index){
+
+    favoriteFarmers.splice(index,1);
+
+
+    localStorage.setItem(
+        "favoriteFarmers",
+        JSON.stringify(
+            favoriteFarmers
+        )
+    );
+
+
+    displayFavoriteFarmers();
+
+}
+
+
+/* ===== VIEW FARMER ===== */
+
+
+function viewFarmer(mobile){
+
+    let farmers =
+        JSON.parse(
+            localStorage.getItem("favoriteFarmers")
+        ) || [];
+
+
+    let selectedFarmer =
+        farmers.find(
+            function(farmer){
+
+                return farmer.mobile === mobile;
+
+            }
+        );
+
+
+    if(!selectedFarmer){
+
+        alert("Farmer details not found.");
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "selectedFarmer",
+        JSON.stringify(selectedFarmer)
+    );
+
+
+    /*
+       We will connect this to your
+       farmer profile/details page later.
+    */
+
+    alert(
+        "Farmer: " +
+        selectedFarmer.name +
+        "\nMobile: " +
+        selectedFarmer.mobile
+    );
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

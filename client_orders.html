@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Orders | FarmXT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    background:linear-gradient(
+        135deg,
+        #14001f,
+        #2d014d,
+        #4b0082,
+        #6a0dad
+    );
+
+    color:white;
+}
+
+
+/* ===== NAVBAR ===== */
+
+.navbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px 8%;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(255,255,255,.15);
+
+}
+
+.logo-section{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.logo{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:50%;
+
+    background:white;
+
+    padding:5px;
+
+}
+
+.logo-section h2{
+
+    font-size:30px;
+
+}
+
+.back-btn{
+
+    text-decoration:none;
+
+    padding:12px 25px;
+
+    border-radius:30px;
+
+    color:white;
+
+    font-weight:bold;
+
+    background:linear-gradient(
+        90deg,
+        #7e22ce,
+        #9333ea,
+        #c026d3
+    );
+
+}
+
+.back-btn:hover{
+
+    box-shadow:0 0 20px #d946ef;
+
+}
+
+
+/* ===== HEADING ===== */
+
+.heading{
+
+    text-align:center;
+
+    padding:45px 20px;
+
+}
+
+.heading h1{
+
+    font-size:42px;
+
+    margin-bottom:10px;
+
+}
+
+.heading p{
+
+    color:#ead5ff;
+
+}
+
+
+/* ===== ORDERS ===== */
+
+.orders-container{
+
+    width:90%;
+
+    max-width:1100px;
+
+    margin:auto;
+
+    padding-bottom:60px;
+
+}
+
+.order-card{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+    transition:.3s;
+
+}
+
+.order-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 0 25px #d946ef;
+
+}
+
+.order-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:20px;
+
+}
+
+.order-header h2{
+
+    color:#facc15;
+
+}
+
+.order-id{
+
+    color:#ead5ff;
+
+    font-size:14px;
+
+}
+
+.status{
+
+    padding:7px 15px;
+
+    border-radius:20px;
+
+    background:#f59e0b;
+
+    font-weight:bold;
+
+}
+
+.order-details{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:15px;
+
+}
+
+.detail{
+
+    background:rgba(255,255,255,.06);
+
+    padding:15px;
+
+    border-radius:12px;
+
+}
+
+.detail span{
+
+    display:block;
+
+}
+
+.label{
+
+    color:#cdb5e9;
+
+    font-size:14px;
+
+    margin-bottom:5px;
+
+}
+
+.value{
+
+    color:white;
+
+    font-weight:600;
+
+}
+
+.total{
+
+    color:#facc15;
+
+    font-size:20px;
+
+}
+
+
+/* ===== EMPTY ===== */
+
+.empty{
+
+    text-align:center;
+
+    padding:80px 20px;
+
+    background:rgba(255,255,255,.06);
+
+    border-radius:20px;
+
+}
+
+.empty h2{
+
+    margin-bottom:15px;
+
+}
+
+.empty p{
+
+    color:#ead5ff;
+
+    margin-bottom:25px;
+
+}
+
+.shop-btn{
+
+    display:inline-block;
+
+    padding:13px 28px;
+
+    border-radius:30px;
+
+    text-decoration:none;
+
+    color:white;
+
+    font-weight:bold;
+
+    background:linear-gradient(
+        90deg,
+        #7e22ce,
+        #9333ea,
+        #c026d3
+    );
+
+}
+.order-buttons{
+    display:flex;
+    gap:12px;
+    margin-top:20px;
+    flex-wrap:wrap;
+}
+
+.details-btn,
+.cancel-btn{
+    padding:12px 20px;
+    border:none;
+    border-radius:25px;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.details-btn{
+    background:linear-gradient(
+        90deg,
+        #7e22ce,
+        #9333ea,
+        #c026d3
+    );
+}
+
+.cancel-btn{
+    background:#dc2626;
+}
+
+.details-btn:hover{
+    box-shadow:0 0 20px #d946ef;
+}
+
+.cancel-btn:hover{
+    background:#b91c1c;
+    box-shadow:0 0 15px #ef4444;
+}
+
+
+/* ORDER STATUS */
+
+.status{
+    padding:6px 12px;
+    border-radius:20px;
+    font-weight:bold;
+}
+
+.status.pending{
+    background:#facc15;
+    color:#3b0764;
+}
+
+.status.confirmed{
+    background:#60a5fa;
+    color:#082f49;
+}
+
+.status.shipped{
+    background:#a78bfa;
+    color:#2e1065;
+}
+
+.status.delivered{
+    background:#22c55e;
+    color:white;
+}
+
+.status.cancelled{
+    background:#ef4444;
+    color:white;
+}
+.order-image{
+    width:200px;
+    height:200px;
+    object-fit:cover;
+    border-radius:15px;
+    display:block;
+    margin-bottom:15px;
+}
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ===== NAVBAR ===== -->
+
+<header class="navbar">
+
+    <div class="logo-section">
+
+        <img src="logo.jpg" class="logo">
+
+        <h2>FarmXT</h2>
+
+    </div>
+
+
+    <a href="market_place.html" class="back-btn">
+
+        🛒 Marketplace
+
+    </a>
+
+</header>
+
+
+<!-- ===== HEADING ===== -->
+
+<section class="heading">
+
+    <h1>📦 My Orders</h1>
+
+    <p>
+        View all your orders placed through FarmXT.
+    </p>
+
+</section>
+
+
+<!-- ===== ORDERS ===== -->
+
+<div
+    id="ordersContainer"
+    class="orders-container">
+</div>
+
+
+
+<script>
+
+let currentClient =
+    JSON.parse(localStorage.getItem("currentClient"));
+
+if (!currentClient) {
+
+    alert("Please login first.");
+
+    window.location.href = "client_login.html";
+
+}
+
+let allOrders =
+    JSON.parse(localStorage.getItem("orders")) || [];
+
+
+/* Show only this client's orders */
+
+let orders = allOrders.filter(function(order) {
+
+    return order.buyerMobile === currentClient.mobile;
+
+});
+
+
+let container =
+    document.getElementById("ordersContainer");
+
+
+displayOrders();
+
+
+function displayOrders() {
+
+    container.innerHTML = "";
+
+    if (orders.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty">
+                <h2>📦 No Orders Yet</h2>
+                <p>Your orders will appear here.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    orders.forEach(function(order, index) {
+
+        let cancelButton = "";
+
+
+        /* Allow cancellation only for Pending orders */
+
+        if (order.status === "Pending") {
+
+            cancelButton = `
+                <button
+                    class="cancel-btn"
+                    onclick="cancelOrder(${index})">
+                    ❌ Cancel Order
+                </button>
+            `;
+
+        }
+
+
+        container.innerHTML += `
+
+        <div class="order-card">
+
+            <img
+                src="${order.image || 'default.jpg'}"
+                class="order-image">
+
+            <div class="order-details">
+
+                <h2>${order.productName}</h2>
+
+                <p>
+                    👨‍🌾 <strong>Farmer:</strong>
+                    ${order.farmerName}
+                </p>
+
+                <p>
+                    📦 <strong>Quantity:</strong>
+                    ${order.quantity} Kg
+                </p>
+
+                <p>
+                    💰 <strong>Price:</strong>
+                    ₹${order.price} / Kg
+                </p>
+
+                <p>
+                    💵 <strong>Total:</strong>
+                    ₹${order.total}
+                </p>
+
+                <p>
+                    💳 <strong>Payment:</strong>
+                    ${order.paymentMethod}
+                </p>
+
+                <p>
+                    📅 <strong>Ordered:</strong>
+                    ${order.date}
+                </p>
+
+                <p>
+                    📌 <strong>Status:</strong>
+                    <span class="status ${order.status.toLowerCase()}">
+                        ${order.status}
+                    </span>
+                </p>
+
+                <div class="order-buttons">
+
+                    <button
+                        class="details-btn"
+                        onclick="viewOrder(${index})">
+                        👁️ View Details
+                    </button>
+
+                    ${cancelButton}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+/* =========================
+   CANCEL ORDER
+========================= */
+
+function cancelOrder(index) {
+
+    let order = orders[index];
+
+
+    if (order.status !== "Pending") {
+
+        alert("This order cannot be cancelled.");
+
+        return;
+
+    }
+
+
+    let confirmCancel =
+        confirm(
+            "Are you sure you want to cancel this order?"
+        );
+
+
+    if (!confirmCancel) {
+
+        return;
+
+    }
+
+
+    /* Find the original order */
+
+    let orderIndex =
+        allOrders.findIndex(function(item) {
+
+            return item.buyerMobile === order.buyerMobile &&
+                   item.productName === order.productName &&
+                   item.date === order.date;
+
+        });
+
+
+    if (orderIndex !== -1) {
+
+        allOrders[orderIndex].status = "Cancelled";
+
+    }
+
+
+    localStorage.setItem(
+        "orders",
+        JSON.stringify(allOrders)
+    );
+
+
+    alert("Order cancelled successfully.");
+
+
+    /* Reload orders */
+
+    orders =
+        allOrders.filter(function(order) {
+
+            return order.buyerMobile === currentClient.mobile;
+
+        });
+
+
+    displayOrders();
+
+}
+
+
+/* =========================
+   VIEW ORDER DETAILS
+========================= */
+
+function viewOrder(index) {
+
+    localStorage.setItem(
+        "selectedOrder",
+        JSON.stringify(orders[index])
+    );
+
+
+    window.location.href =
+        "order_details.html";
+
+}
+
+</script>
+</script>
+
+
+</body>
+
+</html>

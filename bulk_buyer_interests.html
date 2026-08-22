@@ -1,0 +1,2807 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Interested Farmers | FarmXT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    background:linear-gradient(
+        135deg,
+        #14001f,
+        #2d014d,
+        #4b0082,
+        #6a0dad
+    );
+
+    color:white;
+
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px 8%;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(255,255,255,.15);
+
+}
+
+.logo-section{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.logo{
+
+    width:60px;
+
+    height:60px;
+
+    padding:5px;
+
+    background:white;
+
+    border-radius:50%;
+
+}
+
+.logo-section h2{
+
+    font-size:30px;
+
+}
+
+nav{
+
+    display:flex;
+
+    gap:20px;
+
+    align-items:center;
+
+}
+
+nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+nav a:hover{
+
+    color:#facc15;
+
+}
+
+.logout{
+
+    padding:10px 18px;
+
+    border-radius:25px;
+
+    background:linear-gradient(
+        90deg,
+        #7e22ce,
+        #9333ea,
+        #c026d3
+    );
+
+}
+
+
+/* ================= HEADER ================= */
+
+.header{
+
+    text-align:center;
+
+    padding:55px 8% 30px;
+
+}
+
+.header h1{
+
+    font-size:42px;
+
+    margin-bottom:15px;
+
+}
+
+.header p{
+
+    max-width:750px;
+
+    margin:auto;
+
+    color:#ead5ff;
+
+    line-height:1.7;
+
+}
+
+
+/* ================= CONTAINER ================= */
+
+.container{
+
+    width:84%;
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding-bottom:70px;
+
+}
+
+
+/* ================= REQUIREMENT ================= */
+
+.requirement-section{
+
+    margin-bottom:35px;
+
+}
+
+.requirement-title{
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:20px;
+
+    padding:22px 25px;
+
+    margin-bottom:20px;
+
+    box-shadow:
+        0 0 20px rgba(162,89,255,.25);
+
+}
+
+.requirement-title h2{
+
+    color:#facc15;
+
+    margin-bottom:8px;
+
+}
+
+.requirement-title p{
+
+    color:#ead5ff;
+
+}
+
+
+/* ================= FARMER GRID ================= */
+
+.farmer-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(300px,1fr));
+
+    gap:25px;
+
+}
+
+
+/* ================= FARMER CARD ================= */
+
+.farmer-card{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:
+        0 0 25px rgba(162,89,255,.3);
+
+    transition:.3s;
+
+}
+
+.farmer-card:hover{
+
+    transform:translateY(-7px);
+
+    box-shadow:
+        0 0 30px #d946ef;
+
+}
+
+.farmer-name{
+
+    font-size:21px;
+
+    font-weight:600;
+
+    color:white;
+
+    margin-bottom:18px;
+
+}
+
+.detail{
+
+    margin:10px 0;
+
+    color:#ead5ff;
+
+    line-height:1.6;
+
+}
+
+.detail strong{
+
+    color:white;
+
+}
+
+
+/* ================= STATUS ================= */
+
+.status{
+
+    display:inline-block;
+
+    margin-top:15px;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+}
+
+.pending{
+
+    background:rgba(250,204,21,.15);
+
+    color:#fde68a;
+
+}
+
+.accepted{
+
+    background:rgba(34,197,94,.18);
+
+    color:#86efac;
+
+}
+
+.arranged{
+
+    background:rgba(20,184,166,.18);
+
+    color:#5eead4;
+
+}
+
+
+/* ================= BUTTON ================= */
+
+.accept-btn{
+
+    width:100%;
+
+    margin-top:20px;
+
+    padding:13px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:linear-gradient(
+        90deg,
+        #7e22ce,
+        #9333ea,
+        #c026d3
+    );
+
+    color:white;
+
+    font-weight:bold;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.accept-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 0 20px #d946ef;
+
+}
+
+.accept-btn:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+    box-shadow:none;
+
+}
+
+
+/* ================= TRANSPORT BUTTON ================= */
+
+.transport-btn{
+
+    width:100%;
+
+    margin-top:12px;
+
+    padding:13px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:linear-gradient(
+        90deg,
+        #059669,
+        #10b981,
+        #22c55e
+    );
+
+    color:white;
+
+    font-weight:bold;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.transport-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 0 20px #34d399;
+
+}
+
+
+/* ================= VIEW TRANSPORT BUTTON ================= */
+
+.view-transport-btn{
+
+    width:100%;
+
+    margin-top:12px;
+
+    padding:13px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:linear-gradient(
+        90deg,
+        #2563eb,
+        #3b82f6,
+        #06b6d4
+    );
+
+    color:white;
+
+    font-weight:bold;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.view-transport-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 0 20px #38bdf8;
+
+}
+
+
+/* ================= EMPTY ================= */
+
+.empty{
+
+    text-align:center;
+
+    padding:55px 20px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:20px;
+
+}
+
+.empty h2{
+
+    margin-bottom:10px;
+
+}
+
+.empty p{
+
+    color:#ead5ff;
+
+}
+
+
+/* ================= MODAL ================= */
+
+.modal{
+
+    display:none;
+
+    position:fixed;
+
+    z-index:9999;
+
+    inset:0;
+
+    background:rgba(0,0,0,.75);
+
+    backdrop-filter:blur(8px);
+
+    padding:30px 15px;
+
+    overflow-y:auto;
+
+}
+
+.modal.active{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.modal-box{
+
+    width:100%;
+
+    max-width:650px;
+
+    background:linear-gradient(
+        145deg,
+        #240039,
+        #3b0764,
+        #4c1d95
+    );
+
+    border:1px solid rgba(255,255,255,.2);
+
+    border-radius:25px;
+
+    padding:30px;
+
+    box-shadow:0 0 40px rgba(217,70,239,.45);
+
+    position:relative;
+
+}
+
+.modal-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.modal-header h2{
+
+    color:#facc15;
+
+    font-size:25px;
+
+}
+
+.close-btn{
+
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.1);
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+}
+
+.close-btn:hover{
+
+    background:#dc2626;
+
+}
+
+
+/* ================= FORM ================= */
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:18px;
+
+}
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.form-group.full{
+
+    grid-column:1 / -1;
+
+}
+
+.form-group label{
+
+    margin-bottom:7px;
+
+    color:#ead5ff;
+
+    font-size:14px;
+
+    font-weight:500;
+
+}
+
+.form-group input,
+
+.form-group select{
+
+    width:100%;
+
+    padding:12px 14px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.12);
+
+    border:1px solid rgba(255,255,255,.2);
+
+    color:white;
+
+    font-size:14px;
+
+}
+
+.form-group input:focus,
+
+.form-group select:focus{
+
+    border-color:#d946ef;
+
+    box-shadow:0 0 10px rgba(217,70,239,.3);
+
+}
+
+.form-group select option{
+
+    background:#2d014d;
+
+    color:white;
+
+}
+
+.form-note{
+
+    margin:20px 0;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    background:rgba(250,204,21,.08);
+
+    border:1px solid rgba(250,204,21,.2);
+
+    color:#fde68a;
+
+    font-size:13px;
+
+    line-height:1.6;
+
+}
+
+.save-transport-btn{
+
+    width:100%;
+
+    margin-top:10px;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:linear-gradient(
+        90deg,
+        #059669,
+        #10b981,
+        #22c55e
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+.save-transport-btn:hover{
+
+    box-shadow:0 0 20px #34d399;
+
+}
+
+
+/* ================= DETAILS MODAL ================= */
+
+.transport-details{
+
+    background:rgba(255,255,255,.07);
+
+    border-radius:15px;
+
+    padding:20px;
+
+}
+
+.transport-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    padding:11px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.1);
+
+}
+
+.transport-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.transport-row span:first-child{
+
+    color:#c4b5fd;
+
+}
+
+.transport-row span:last-child{
+
+    color:white;
+
+    font-weight:500;
+
+    text-align:right;
+
+}
+
+
+/* ================= FOOTER ================= */
+
+.footer{
+
+    padding:30px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,.08);
+
+    border-top:1px solid rgba(255,255,255,.15);
+
+}
+
+.footer p{
+
+    color:#ead5ff;
+
+    margin:8px;
+
+}
+
+.footer a{
+
+    color:white;
+
+    text-decoration:none;
+
+    margin:0 10px;
+
+}
+
+.footer a:hover{
+
+    color:#facc15;
+
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:800px){
+
+    .navbar{
+
+        flex-direction:column;
+
+        gap:20px;
+
+    }
+
+    nav{
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+    }
+
+    .header h1{
+
+        font-size:34px;
+
+    }
+
+    .container{
+
+        width:92%;
+
+    }
+
+    .form-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .form-group.full{
+
+        grid-column:auto;
+
+    }
+
+    .modal-box{
+
+        padding:22px;
+
+    }
+
+    .transport-row{
+
+        flex-direction:column;
+
+        gap:4px;
+
+    }
+
+    .transport-row span:last-child{
+
+        text-align:left;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+    <div class="logo-section">
+
+        <img
+            src="logo.jpg"
+            class="logo"
+            alt="FarmXT Logo">
+
+        <h2>FarmXT</h2>
+
+    </div>
+
+
+    <nav>
+
+        <a href="bulk_buyer_dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="post_requirement.html">
+            Post Requirement
+        </a>
+
+        <a href="bulk_buyer_interests.html">
+            Interested Farmers
+        </a>
+
+        <a
+            href="#"
+            class="logout"
+            onclick="logout(event)">
+
+            Logout
+
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<section class="header">
+
+    <h1>
+        👨‍🌾 Interested Farmers
+    </h1>
+
+    <p>
+
+        View farmers who are interested in
+        supplying your crop requirements.
+
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<div class="container">
+
+    <div id="content"></div>
+
+</div>
+
+
+<!-- =====================================================
+     TRANSPORTATION FORM MODAL
+===================================================== -->
+
+<div
+    class="modal"
+    id="transportModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>🚚 Arrange Transportation</h2>
+
+            <button
+                type="button"
+                class="close-btn"
+                onclick="closeTransportModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <form id="transportForm">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>👨‍🌾 Farmer</label>
+
+                    <input
+                        type="text"
+                        id="transportFarmer"
+                        readonly>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>🌾 Crop</label>
+
+                    <input
+                        type="text"
+                        id="transportCrop"
+                        readonly>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>📦 Quantity</label>
+
+                    <input
+                        type="text"
+                        id="transportQuantity"
+                        readonly>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>🚛 Transport Type *</label>
+
+                    <select
+                        id="transportType"
+                        required>
+
+                        <option value="">
+                            Select Transport
+                        </option>
+
+                        <option value="Truck">
+                            🚛 Truck
+                        </option>
+
+                        <option value="Mini Truck">
+                            🚚 Mini Truck
+                        </option>
+
+                        <option value="Tractor">
+                            🚜 Tractor
+                        </option>
+
+                        <option value="Tempo">
+                            🚐 Tempo
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>📍 Pickup Location *</label>
+
+                    <input
+                        type="text"
+                        id="pickupLocation"
+                        placeholder="Enter pickup location"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>📍 Delivery Location *</label>
+
+                    <input
+                        type="text"
+                        id="deliveryLocation"
+                        placeholder="Enter delivery location"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>📅 Pickup Date *</label>
+
+                    <input
+                        type="date"
+                        id="pickupDate"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>⏰ Pickup Time *</label>
+
+                    <input
+                        type="time"
+                        id="pickupTime"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>💰 Transportation Cost *</label>
+
+                    <input
+                        type="number"
+                        id="transportCost"
+                        placeholder="Enter cost"
+                        min="0"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>🚛 Vehicle Number *</label>
+
+                    <input
+                        type="text"
+                        id="vehicleNumber"
+                        placeholder="e.g. MH 46 AB 1234"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>👨‍✈️ Driver Name *</label>
+
+                    <input
+                        type="text"
+                        id="driverName"
+                        placeholder="Enter driver name"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>📞 Driver Phone *</label>
+
+                    <input
+                        type="tel"
+                        id="driverPhone"
+                        placeholder="Enter driver phone"
+                        pattern="[0-9]{10}"
+                        maxlength="10"
+                        required>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-note">
+
+                ℹ️ Transportation details will be saved to this
+                requirement and linked to the selected farmer.
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="save-transport-btn">
+
+                ✅ Confirm Transportation
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     TRANSPORTATION DETAILS MODAL
+===================================================== -->
+
+<div
+    class="modal"
+    id="detailsModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>🚚 Transportation Details</h2>
+
+            <button
+                type="button"
+                class="close-btn"
+                onclick="closeDetailsModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="transportDetailsContent"
+            class="transport-details">
+
+        </div>
+
+
+        <button
+            type="button"
+            class="transport-btn"
+            id="editTransportBtn">
+
+            ✏️ Edit Transportation
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <p>
+        © 2026 FarmXT |
+        Empowering Farmers Through Technology
+    </p>
+
+    <p>
+
+        <a href="contact.html">
+            Contact
+        </a>
+
+        |
+
+        <a href="community_network.html">
+            Community
+        </a>
+
+        |
+
+        <a href="transparency.html">
+            Transparency
+        </a>
+
+    </p>
+
+</footer>
+
+
+<script>
+
+
+// =====================================================
+// CHECK BULK BUYER LOGIN
+// =====================================================
+
+let buyer = JSON.parse(
+    localStorage.getItem("currentBulkBuyer")
+);
+
+
+if(!buyer){
+
+    alert(
+        "Please login as a Bulk Buyer first."
+    );
+
+    window.location.href =
+        "bulk_buyer_login.html";
+
+}
+
+
+// =====================================================
+// GLOBAL TRANSPORT VARIABLES
+// =====================================================
+
+let currentInterestId = null;
+let currentRequirementId = null;
+
+
+// =====================================================
+// LOAD INTERESTS
+// =====================================================
+
+function loadInterests(){
+
+    let requirements =
+        JSON.parse(
+            localStorage.getItem(
+                "bulkBuyerRequirements"
+            )
+        ) || [];
+
+
+    let interests =
+        JSON.parse(
+            localStorage.getItem(
+                "bulkBuyerInterests"
+            )
+        ) || [];
+
+
+    let content =
+        document.getElementById("content");
+
+
+    // =================================================
+    // ONLY THIS BUYER'S REQUIREMENTS
+    // =================================================
+
+    let myRequirements =
+        requirements.filter(
+            function(requirement){
+
+                return (
+                    String(requirement.buyerId) ===
+                    String(buyer.id)
+                );
+
+            }
+        );
+
+
+    // =================================================
+    // NO REQUIREMENTS
+    // =================================================
+
+    if(myRequirements.length === 0){
+
+        content.innerHTML = `
+
+            <div class="empty">
+
+                <h2>
+                    📋 No Requirements Yet
+                </h2>
+
+                <p>
+
+                    You have not posted any
+                    crop requirements yet.
+
+                </p>
+
+                <br>
+
+                <a
+                    href="post_requirement.html"
+                    class="accept-btn"
+                    style="
+                        display:inline-block;
+                        width:auto;
+                        text-decoration:none;
+                        padding:12px 25px;
+                    ">
+
+                    📢 Post Requirement
+
+                </a>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    content.innerHTML = "";
+
+
+    // =================================================
+    // DISPLAY EACH REQUIREMENT
+    // =================================================
+
+    myRequirements.forEach(
+        function(requirement){
+
+            let myInterests =
+                interests.filter(
+                    function(interest){
+
+                        return (
+                            String(interest.requirementId) ===
+                            String(requirement.id)
+                        );
+
+                    }
+                );
+
+
+            let section =
+                document.createElement("div");
+
+            section.className =
+                "requirement-section";
+
+
+            let farmersHTML = "";
+
+
+            // =================================================
+            // NO FARMERS
+            // =================================================
+
+            if(myInterests.length === 0){
+
+                farmersHTML = `
+
+                    <div class="empty">
+
+                        <h2>
+                            ⏳ No Farmers Yet
+                        </h2>
+
+                        <p>
+
+                            No farmer has shown interest
+                            in this requirement yet.
+
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
+
+
+            // =================================================
+            // FARMERS AVAILABLE
+            // =================================================
+
+            else{
+
+                farmersHTML = `
+                    <div class="farmer-grid">
+                `;
+
+
+                myInterests.forEach(
+                    function(interest){
+
+                        let status =
+                            String(
+                                interest.status || ""
+                            ).toLowerCase();
+
+
+                        let accepted =
+                            status === "accepted";
+
+
+                        let transportation =
+                            getTransportation(
+                                interest.id,
+                                requirement.id
+                            );
+
+
+                        let transportationArranged =
+                            transportation &&
+                            transportation.status ===
+                            "Arranged";
+
+
+                        farmersHTML += `
+
+                            <div
+                                class="farmer-card"
+                                id="interest-${interest.id}">
+
+                                <div class="farmer-name">
+
+                                    👨‍🌾
+                                    ${escapeHTML(
+                                        interest.farmerName ||
+                                        "Farmer"
+                                    )}
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <strong>🌾 Crop:</strong>
+
+                                    ${escapeHTML(
+                                        interest.availableCrop ||
+                                        requirement.cropNeeded ||
+                                        "Not Available"
+                                    )}
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <strong>📦 Quantity:</strong>
+
+                                    ${escapeHTML(
+                                        interest.availableQuantity ||
+                                        requirement.quantity ||
+                                        "Not Available"
+                                    )}
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <strong>📅 Required Date:</strong>
+
+                                    ${escapeHTML(
+                                        interest.deliveryDate ||
+                                        requirement.deliveryDate ||
+                                        "Not Available"
+                                    )}
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <strong>📍 Delivery Location:</strong>
+
+                                    ${escapeHTML(
+                                        requirement.deliveryLocation ||
+                                        "Not Available"
+                                    )}
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <strong>📝 Farmer Message:</strong>
+
+                                    ${escapeHTML(
+                                        interest.message ||
+                                        "No message provided"
+                                    )}
+
+                                </div>
+
+
+                                ${
+                                    transportationArranged
+                                    ?
+                                    `
+
+                                    <span class="status arranged">
+
+                                        🚚 Transportation Arranged
+
+                                    </span>
+
+
+                                    <button
+                                        type="button"
+                                        class="view-transport-btn"
+                                        onclick="viewTransportation(
+                                            '${interest.id}',
+                                            '${requirement.id}'
+                                        )">
+
+                                        👁️ View Transportation Details
+
+                                    </button>
+
+                                    `
+                                    :
+                                    accepted
+                                    ?
+                                    `
+
+                                    <span class="status accepted">
+
+                                        ✓ Farmer Accepted
+
+                                    </span>
+
+
+                                    <button
+                                        type="button"
+                                        class="transport-btn"
+                                        onclick="arrangeTransportation(
+                                            '${interest.id}',
+                                            '${requirement.id}'
+                                        )">
+
+                                        🚚 Arrange Transportation
+
+                                    </button>
+
+                                    `
+                                    :
+                                    `
+
+                                    <span class="status pending">
+
+                                        🟡 Pending
+
+                                    </span>
+
+
+                                    <button
+                                        type="button"
+                                        class="accept-btn"
+                                        onclick="acceptFarmer(
+                                            '${interest.id}'
+                                        )">
+
+                                        🤝 Select This Farmer
+
+                                    </button>
+
+                                    `
+                                }
+
+                            </div>
+
+                        `;
+
+                    }
+                );
+
+
+                farmersHTML += `
+                    </div>
+                `;
+
+            }
+
+
+            section.innerHTML = `
+
+                <div class="requirement-title">
+
+                    <h2>
+
+                        🌾 ${
+                            escapeHTML(
+                                requirement.cropNeeded ||
+                                "Crop Requirement"
+                            )
+                        }
+
+                    </h2>
+
+                    <p>
+
+                        <strong>
+                            Quantity:
+                        </strong>
+
+                        ${
+                            escapeHTML(
+                                requirement.quantity ||
+                                "Not Available"
+                            )
+                        }
+
+                        &nbsp; | &nbsp;
+
+                        <strong>
+                            Delivery:
+                        </strong>
+
+                        ${
+                            escapeHTML(
+                                requirement.deliveryLocation ||
+                                "Not Available"
+                            )
+                        }
+
+                    </p>
+
+                </div>
+
+
+                ${farmersHTML}
+
+            `;
+
+
+            content.appendChild(section);
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// ESCAPE HTML
+// Prevent farmer/user data from breaking the page
+// =====================================================
+
+function escapeHTML(value){
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+// =====================================================
+// SELECT FARMER
+// =====================================================
+
+function acceptFarmer(interestId){
+
+    let interests = JSON.parse(
+        localStorage.getItem("bulkBuyerInterests")
+    ) || [];
+
+
+    let requirements = JSON.parse(
+        localStorage.getItem("bulkBuyerRequirements")
+    ) || [];
+
+
+    // Find selected interest
+
+    let selectedInterest =
+        interests.find(
+            function(interest){
+
+                return String(interest.id) ===
+                       String(interestId);
+
+            }
+        );
+
+
+    if(!selectedInterest){
+
+        alert("❌ Farmer interest not found.");
+
+        return;
+
+    }
+
+
+    // Find requirement
+
+    let requirement =
+        requirements.find(
+            function(item){
+
+                return String(item.id) ===
+                       String(
+                           selectedInterest.requirementId
+                       );
+
+            }
+        );
+
+
+    if(!requirement){
+
+        alert("❌ Requirement not found.");
+
+        return;
+
+    }
+
+
+    // Confirm
+
+    let confirmSelection =
+        confirm(
+            "Do you want to select " +
+            (
+                selectedInterest.farmerName ||
+                "this farmer"
+            ) +
+            " for this requirement?"
+        );
+
+
+    if(!confirmSelection){
+
+        return;
+
+    }
+
+
+    // ---------------------------------------------
+    // Remove accepted status from other farmers
+    // ---------------------------------------------
+
+    interests.forEach(
+        function(interest){
+
+            if(
+                String(interest.requirementId) ===
+                String(selectedInterest.requirementId)
+            ){
+
+                interest.status = "Pending";
+
+            }
+
+        }
+    );
+
+
+    // ---------------------------------------------
+    // Select farmer
+    // ---------------------------------------------
+
+    selectedInterest.status =
+        "Accepted";
+
+
+    selectedInterest.acceptedAt =
+        new Date().toLocaleString();
+
+
+    // ---------------------------------------------
+    // Update requirement
+    // ---------------------------------------------
+
+    requirement.status =
+        "Farmer Selected";
+
+
+    requirement.selectedFarmerId =
+        selectedInterest.farmerId;
+
+
+    requirement.selectedFarmerName =
+        selectedInterest.farmerName;
+
+
+    requirement.selectedInterestId =
+        selectedInterest.id;
+
+
+    requirement.selectedAt =
+        new Date().toLocaleString();
+
+
+    // ---------------------------------------------
+    // Save
+    // ---------------------------------------------
+
+    localStorage.setItem(
+        "bulkBuyerInterests",
+        JSON.stringify(interests)
+    );
+
+
+    localStorage.setItem(
+        "bulkBuyerRequirements",
+        JSON.stringify(requirements)
+    );
+
+
+    alert(
+        "✅ Farmer selected successfully!"
+    );
+
+
+    loadInterests();
+
+}
+
+
+// =====================================================
+// GET TRANSPORTATION
+// =====================================================
+
+function getTransportation(
+    interestId,
+    requirementId
+){
+
+    let transportation =
+        JSON.parse(
+            localStorage.getItem(
+                "farmXTTransportation"
+            )
+        ) || [];
+
+
+    return transportation.find(
+        function(item){
+
+            return (
+                String(item.interestId) ===
+                String(interestId)
+
+                &&
+
+                String(item.requirementId) ===
+                String(requirementId)
+            );
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// ARRANGE TRANSPORTATION
+// =====================================================
+
+function arrangeTransportation(
+    interestId,
+    requirementId
+){
+
+    let interests =
+        JSON.parse(
+            localStorage.getItem(
+                "bulkBuyerInterests"
+            )
+        ) || [];
+
+
+    let requirements =
+        JSON.parse(
+            localStorage.getItem(
+                "bulkBuyerRequirements"
+            )
+        ) || [];
+
+
+    let interest =
+        interests.find(
+            function(item){
+
+                return String(item.id) ===
+                       String(interestId);
+
+            }
+        );
+
+
+    let requirement =
+        requirements.find(
+            function(item){
+
+                return String(item.id) ===
+                       String(requirementId);
+
+            }
+        );
+
+
+    if(!interest || !requirement){
+
+        alert(
+            "❌ Farmer or requirement not found."
+        );
+
+        return;
+
+    }
+
+
+    currentInterestId =
+        interestId;
+
+
+    currentRequirementId =
+        requirementId;
+
+
+    // ---------------------------------------------
+    // Fill farmer information
+    // ---------------------------------------------
+
+    document.getElementById(
+        "transportFarmer"
+    ).value =
+        interest.farmerName || "Farmer";
+
+
+    document.getElementById(
+        "transportCrop"
+    ).value =
+        interest.availableCrop ||
+        requirement.cropNeeded ||
+        "";
+
+
+    document.getElementById(
+        "transportQuantity"
+    ).value =
+        interest.availableQuantity ||
+        requirement.quantity ||
+        "";
+
+
+    // ---------------------------------------------
+    // Default delivery location
+    // ---------------------------------------------
+
+    document.getElementById(
+        "deliveryLocation"
+    ).value =
+        requirement.deliveryLocation || "";
+
+
+    // ---------------------------------------------
+    // Check existing transportation
+    // ---------------------------------------------
+
+    let existing =
+        getTransportation(
+            interestId,
+            requirementId
+        );
+
+
+    if(existing){
+
+        document.getElementById(
+            "transportType"
+        ).value =
+            existing.transportType || "";
+
+
+        document.getElementById(
+            "pickupLocation"
+        ).value =
+            existing.pickupLocation || "";
+
+
+        document.getElementById(
+            "deliveryLocation"
+        ).value =
+            existing.deliveryLocation ||
+            requirement.deliveryLocation ||
+            "";
+
+
+        document.getElementById(
+            "pickupDate"
+        ).value =
+            existing.pickupDate || "";
+
+
+        document.getElementById(
+            "pickupTime"
+        ).value =
+            existing.pickupTime || "";
+
+
+        document.getElementById(
+            "transportCost"
+        ).value =
+            existing.transportCost || "";
+
+
+        document.getElementById(
+            "vehicleNumber"
+        ).value =
+            existing.vehicleNumber || "";
+
+
+        document.getElementById(
+            "driverName"
+        ).value =
+            existing.driverName || "";
+
+
+        document.getElementById(
+            "driverPhone"
+        ).value =
+            existing.driverPhone || "";
+
+    }
+    else{
+
+        document.getElementById(
+            "transportForm"
+        ).reset();
+
+
+        document.getElementById(
+            "transportFarmer"
+        ).value =
+            interest.farmerName || "Farmer";
+
+
+        document.getElementById(
+            "transportCrop"
+        ).value =
+            interest.availableCrop ||
+            requirement.cropNeeded ||
+            "";
+
+
+        document.getElementById(
+            "transportQuantity"
+        ).value =
+            interest.availableQuantity ||
+            requirement.quantity ||
+            "";
+
+
+        document.getElementById(
+            "deliveryLocation"
+        ).value =
+            requirement.deliveryLocation || "";
+
+    }
+
+
+    document.getElementById(
+        "transportModal"
+    ).classList.add("active");
+
+}
+
+
+// =====================================================
+// CLOSE TRANSPORT MODAL
+// =====================================================
+
+function closeTransportModal(){
+
+    document.getElementById(
+        "transportModal"
+    ).classList.remove("active");
+
+}
+
+
+// =====================================================
+// SAVE TRANSPORTATION
+// =====================================================
+
+document.getElementById(
+    "transportForm"
+).addEventListener(
+    "submit",
+    function(event){
+
+        event.preventDefault();
+
+
+        if(
+            !currentInterestId ||
+            !currentRequirementId
+        ){
+
+            alert(
+                "❌ Please select a farmer first."
+            );
+
+            return;
+
+        }
+
+
+        let transportation =
+            JSON.parse(
+                localStorage.getItem(
+                    "farmXTTransportation"
+                )
+            ) || [];
+
+
+        let existingIndex =
+            transportation.findIndex(
+                function(item){
+
+                    return (
+                        String(item.interestId) ===
+                        String(currentInterestId)
+
+                        &&
+
+                        String(item.requirementId) ===
+                        String(currentRequirementId)
+                    );
+
+                }
+            );
+
+
+        let transportData = {
+
+            id:
+                existingIndex >= 0
+                ?
+                transportation[existingIndex].id
+                :
+                "TR-" +
+                Date.now(),
+
+            interestId:
+                currentInterestId,
+
+            requirementId:
+                currentRequirementId,
+
+            farmerName:
+                document.getElementById(
+                    "transportFarmer"
+                ).value,
+
+            crop:
+                document.getElementById(
+                    "transportCrop"
+                ).value,
+
+            quantity:
+                document.getElementById(
+                    "transportQuantity"
+                ).value,
+
+            transportType:
+                document.getElementById(
+                    "transportType"
+                ).value,
+
+            pickupLocation:
+                document.getElementById(
+                    "pickupLocation"
+                ).value.trim(),
+
+            deliveryLocation:
+                document.getElementById(
+                    "deliveryLocation"
+                ).value.trim(),
+
+            pickupDate:
+                document.getElementById(
+                    "pickupDate"
+                ).value,
+
+            pickupTime:
+                document.getElementById(
+                    "pickupTime"
+                ).value,
+
+            transportCost:
+                document.getElementById(
+                    "transportCost"
+                ).value,
+
+            vehicleNumber:
+                document.getElementById(
+                    "vehicleNumber"
+                ).value.trim(),
+
+            driverName:
+                document.getElementById(
+                    "driverName"
+                ).value.trim(),
+
+            driverPhone:
+                document.getElementById(
+                    "driverPhone"
+                ).value.trim(),
+
+            status:
+                "Arranged",
+
+            arrangedAt:
+                new Date().toLocaleString()
+
+        };
+
+
+        // ---------------------------------------------
+        // Add or update transportation
+        // ---------------------------------------------
+
+        if(existingIndex >= 0){
+
+            transportation[existingIndex] =
+                transportData;
+
+        }
+        else{
+
+            transportation.push(
+                transportData
+            );
+
+        }
+
+
+        // ---------------------------------------------
+        // Save transportation
+        // ---------------------------------------------
+
+        localStorage.setItem(
+            "farmXTTransportation",
+            JSON.stringify(
+                transportation
+            )
+        );
+
+
+        // ---------------------------------------------
+        // Update requirement status
+        // ---------------------------------------------
+
+        let requirements =
+            JSON.parse(
+                localStorage.getItem(
+                    "bulkBuyerRequirements"
+                )
+            ) || [];
+
+
+        let requirement =
+            requirements.find(
+                function(item){
+
+                    return String(item.id) ===
+                           String(
+                               currentRequirementId
+                           );
+
+                }
+            );
+
+
+        if(requirement){
+
+            requirement.status =
+                "Transportation Arranged";
+
+
+            requirement.transportationId =
+                transportData.id;
+
+
+            requirement.transportationStatus =
+                "Arranged";
+
+
+            requirement.transportationArrangedAt =
+                transportData.arrangedAt;
+
+        }
+
+
+        localStorage.setItem(
+            "bulkBuyerRequirements",
+            JSON.stringify(
+                requirements
+            )
+        );
+
+
+        // ---------------------------------------------
+        // Update interest
+        // ---------------------------------------------
+
+        let interests =
+            JSON.parse(
+                localStorage.getItem(
+                    "bulkBuyerInterests"
+                )
+            ) || [];
+
+
+        let interest =
+            interests.find(
+                function(item){
+
+                    return String(item.id) ===
+                           String(
+                               currentInterestId
+                           );
+
+                }
+            );
+
+
+        if(interest){
+
+            interest.transportationStatus =
+                "Arranged";
+
+            interest.transportationId =
+                transportData.id;
+
+        }
+
+
+        localStorage.setItem(
+            "bulkBuyerInterests",
+            JSON.stringify(
+                interests
+            )
+        );
+
+
+        closeTransportModal();
+
+
+        alert(
+            "🚚 Transportation arranged successfully!"
+        );
+
+
+        loadInterests();
+
+    }
+);
+
+
+// =====================================================
+// VIEW TRANSPORTATION
+// =====================================================
+
+function viewTransportation(
+    interestId,
+    requirementId
+){
+
+    let transport =
+        getTransportation(
+            interestId,
+            requirementId
+        );
+
+
+    if(!transport){
+
+        alert(
+            "❌ Transportation details not found."
+        );
+
+        return;
+
+    }
+
+
+    currentInterestId =
+        interestId;
+
+
+    currentRequirementId =
+        requirementId;
+
+
+    document.getElementById(
+        "transportDetailsContent"
+    ).innerHTML = `
+
+        <div class="transport-row">
+
+            <span>👨‍🌾 Farmer</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.farmerName
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="transport-row">
+
+            <span>🌾 Crop</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.crop
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="transport-row">
+
+            <span>📦 Quantity</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.quantity
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="transport-row">
+
+            <span>🚛 Transport Type</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.transportType
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="transport-row">
+
+            <span>📍 Pickup</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.pickupLocation
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="transport-row">
+
+            <span>📍 Delivery</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.deliveryLocation
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="transport-row">
+
+            <span>📅 Pickup Date</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.pickupDate
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="transport-row">
+
+            <span>⏰ Pickup Time</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.pickupTime
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="transport-row">
+
+            <span>💰 Transportation Cost</span>
+
+            <span>
+                ₹${escapeHTML(
+                    transport.transportCost
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="transport-row">
+
+            <span>🚛 Vehicle Number</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.vehicleNumber
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="transport-row">
+
+            <span>👨‍✈️ Driver</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.driverName
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="transport-row">
+
+            <span>📞 Driver Phone</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.driverPhone
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="transport-row">
+
+            <span>📌 Status</span>
+
+            <span style="color:#5eead4">
+
+                ✓ ${escapeHTML(
+                    transport.status
+                )}
+
+            </span>
+
+        </div>
+
+
+        <div class="transport-row">
+
+            <span>🕐 Arranged At</span>
+
+            <span>
+                ${escapeHTML(
+                    transport.arrangedAt
+                )}
+            </span>
+
+        </div>
+
+    `;
+
+
+    document.getElementById(
+        "detailsModal"
+    ).classList.add("active");
+
+}
+
+
+// =====================================================
+// EDIT TRANSPORTATION
+// =====================================================
+
+document.getElementById(
+    "editTransportBtn"
+).addEventListener(
+    "click",
+    function(){
+
+        closeDetailsModal();
+
+
+        arrangeTransportation(
+            currentInterestId,
+            currentRequirementId
+        );
+
+    }
+);
+
+
+// =====================================================
+// CLOSE DETAILS MODAL
+// =====================================================
+
+function closeDetailsModal(){
+
+    document.getElementById(
+        "detailsModal"
+    ).classList.remove("active");
+
+}
+
+
+// =====================================================
+// CLOSE MODALS WHEN CLICKING OUTSIDE
+// =====================================================
+
+document.getElementById(
+    "transportModal"
+).addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === this){
+
+            closeTransportModal();
+
+        }
+
+    }
+);
+
+
+document.getElementById(
+    "detailsModal"
+).addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === this){
+
+            closeDetailsModal();
+
+        }
+
+    }
+);
+
+
+// =====================================================
+// LOGOUT
+// =====================================================
+
+function logout(event){
+
+    event.preventDefault();
+
+
+    localStorage.removeItem(
+        "currentBulkBuyer"
+    );
+
+
+    localStorage.removeItem(
+        "userType"
+    );
+
+
+    alert(
+        "Logged Out Successfully!"
+    );
+
+
+    window.location.href =
+        "final.html";
+
+}
+// =====================================================
+// LOAD PAGE
+// =====================================================
+
+if(buyer){
+    loadInterests();
+}
+</script>
+</body>
+</html>

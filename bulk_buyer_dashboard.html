@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bulk Buyer Dashboard | FarmXT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+
+    background:linear-gradient(
+        135deg,
+        #14001f,
+        #2d014d,
+        #4b0082,
+        #6a0dad
+    );
+
+    color:white;
+}
+
+
+/* ===== NAVBAR ===== */
+
+.navbar{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:20px 8%;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(255,255,255,.15);
+
+}
+
+.logo-section{
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+}
+
+.logo{
+
+    width:60px;
+    height:60px;
+
+    background:white;
+
+    padding:5px;
+
+    border-radius:50%;
+
+}
+
+.logo-section h2{
+
+    font-size:30px;
+
+}
+
+
+nav{
+
+    display:flex;
+    gap:20px;
+    align-items:center;
+
+}
+
+nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+nav a:hover{
+
+    color:#facc15;
+
+}
+
+.logout{
+
+    padding:10px 18px;
+
+    border-radius:25px;
+
+    background:linear-gradient(
+        90deg,
+        #7e22ce,
+        #9333ea,
+        #c026d3
+    );
+
+}
+
+
+/* ===== HERO ===== */
+
+.hero{
+
+    padding:70px 8% 40px;
+
+}
+
+.hero h1{
+
+    font-size:48px;
+
+    margin-bottom:15px;
+
+}
+
+.hero p{
+
+    color:#ead5ff;
+
+    font-size:18px;
+
+    line-height:1.8;
+
+}
+
+
+/* ===== BUSINESS INFO ===== */
+
+.business-info{
+
+    margin-top:30px;
+
+    display:inline-block;
+
+    padding:15px 25px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:15px;
+
+}
+
+.business-info strong{
+
+    color:#facc15;
+
+}
+
+
+/* ===== QUICK ACTIONS ===== */
+
+.actions{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(260px,1fr));
+
+    gap:30px;
+
+    padding:30px 8% 60px;
+
+}
+
+
+.card{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:22px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:
+        0 0 25px rgba(162,89,255,.3);
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+        0 0 30px #d946ef;
+
+}
+
+.card h2{
+
+    margin-bottom:15px;
+
+}
+
+.card p{
+
+    color:#ead5ff;
+
+    line-height:1.7;
+
+    margin-bottom:22px;
+
+}
+
+.card a{
+
+    display:inline-block;
+
+    padding:12px 25px;
+
+    border-radius:25px;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    background:linear-gradient(
+        90deg,
+        #7e22ce,
+        #9333ea,
+        #c026d3
+    );
+
+}
+
+
+/* ===== REQUIREMENTS ===== */
+
+.section{
+
+    padding:20px 8% 60px;
+
+}
+
+.section-title{
+
+    font-size:32px;
+
+    margin-bottom:25px;
+
+}
+
+
+.requirements{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(300px,1fr));
+
+    gap:25px;
+
+}
+
+
+.requirement-card{
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:20px;
+
+    padding:25px;
+
+}
+
+.requirement-card h3{
+
+    color:#facc15;
+
+    margin-bottom:15px;
+
+}
+
+.requirement-card p{
+
+    color:#ead5ff;
+
+    margin:8px 0;
+
+}
+
+.status{
+
+    display:inline-block;
+
+    margin-top:15px;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    background:rgba(34,197,94,.2);
+
+    color:#86efac;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+}
+
+
+/* ===== EMPTY ===== */
+
+.empty{
+
+    padding:40px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:20px;
+
+    color:#ead5ff;
+
+}
+
+
+/* ===== FOOTER ===== */
+
+.footer{
+
+    padding:30px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,.08);
+
+    border-top:1px solid rgba(255,255,255,.15);
+
+}
+
+.footer p{
+
+    color:#ead5ff;
+
+    margin:8px;
+
+}
+
+.footer a{
+
+    color:white;
+
+    text-decoration:none;
+
+    margin:0 10px;
+
+}
+
+
+/* ===== MOBILE ===== */
+
+@media(max-width:800px){
+
+    .navbar{
+
+        flex-direction:column;
+
+        gap:20px;
+
+    }
+
+    nav{
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+    }
+
+    .hero h1{
+
+        font-size:38px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+    <div class="logo-section">
+
+        <img
+            src="logo.jpg"
+            class="logo"
+            alt="FarmXT Logo">
+
+        <h2>
+            FarmXT
+        </h2>
+
+    </div>
+
+
+    <nav>
+
+        <a href="bulk_buyer_dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="post_requirement.html">
+            Post Requirement
+        </a>
+
+        <a href="#myRequirements">
+            My Requirements
+        </a>
+
+       <a href="bulk_buyer_interests.html">
+
+    View Farmers
+
+</a>
+
+        <a href="logistic_optimization.html">
+            Transportation
+        </a>
+
+        <a
+            href="#"
+            class="logout"
+            onclick="logout(event)">
+
+            Logout
+
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <h1 id="welcome">
+        Welcome Bulk Buyer 🏪
+    </h1>
+
+
+    <p>
+
+        Post your crop requirements and connect
+        with farmers who can supply the products
+        you need.
+
+    </p>
+
+
+    <div class="business-info">
+
+        <strong>
+            Business:
+        </strong>
+
+        <span id="businessName">
+            Bulk Buyer
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     QUICK ACTIONS
+===================================================== -->
+
+<section class="actions">
+
+
+    <!-- POST REQUIREMENT -->
+
+    <div class="card">
+
+        <h2>
+            📋 Post Requirement
+        </h2>
+
+        <p>
+
+            Tell farmers which crops and quantities
+            your business needs.
+
+        </p>
+
+        <a href="post_requirement.html">
+
+            Post Requirement
+
+        </a>
+
+    </div>
+
+
+
+    <!-- MY REQUIREMENTS -->
+
+    <div class="card">
+
+        <h2>
+            🌾 My Requirements
+        </h2>
+
+        <p>
+
+            View the requirements you have
+            posted on FarmXT.
+
+        </p>
+
+        <a href="#myRequirements">
+
+            View Requirements
+
+        </a>
+
+    </div>
+
+
+
+    <!-- FARMER INTERESTS -->
+
+    <div class="card">
+
+        <h2>
+            🤝 Farmer Interests
+        </h2>
+
+        <p>
+
+            View farmers who are interested
+            in fulfilling your requirements.
+
+        </p>
+
+        <a href="#farmerInterests">
+
+            View Interests
+
+        </a>
+
+    </div>
+
+
+
+    <!-- TRANSPORTATION -->
+
+    <div class="card">
+
+        <h2>
+            🚚 Transportation
+        </h2>
+
+        <p>
+
+            Manage transportation and delivery
+            of your required crops.
+
+        </p>
+
+        <a href="logistic_optimization.html">
+
+            Open Logistics
+
+        </a>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     MY REQUIREMENTS
+===================================================== -->
+
+<section
+    class="section"
+    id="myRequirements">
+
+    <h2 class="section-title">
+
+        📋 My Requirements
+
+    </h2>
+
+
+    <div
+        class="requirements"
+        id="requirementsContainer">
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FARMER INTERESTS
+===================================================== -->
+
+<section
+    class="section"
+    id="farmerInterests">
+
+    <h2 class="section-title">
+
+        🤝 Farmer Interests
+
+    </h2>
+
+
+    <div
+        class="requirements"
+        id="interestsContainer">
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <p>
+        © 2026 FarmXT |
+        Empowering Farmers Through Technology
+    </p>
+
+    <p>
+
+        <a href="contact.html">
+            Contact
+        </a>
+
+        |
+
+        <a href="community_network.html">
+            Community
+        </a>
+
+        |
+
+        <a href="transparency.html">
+            Transparency
+        </a>
+
+    </p>
+
+</footer>
+
+
+
+<script>
+
+
+// =====================================================
+// CHECK BULK BUYER LOGIN
+// =====================================================
+
+let buyer = JSON.parse(
+    localStorage.getItem("currentBulkBuyer")
+);
+
+
+if(!buyer){
+
+    alert(
+        "Please login as a Bulk Buyer first."
+    );
+
+    window.location.href =
+        "bulk_buyer_login.html";
+
+}
+
+
+
+// =====================================================
+// DISPLAY BUSINESS NAME
+// =====================================================
+
+if(buyer){
+
+    document.getElementById(
+        "welcome"
+    ).innerHTML =
+        "Welcome, " +
+        (buyer.ownerName || "Bulk Buyer") +
+        " 🏪";
+
+
+    document.getElementById(
+        "businessName"
+    ).innerText =
+        buyer.businessName ||
+        "Bulk Buyer";
+
+}
+
+
+
+// =====================================================
+// LOAD REQUIREMENTS
+// =====================================================
+
+function loadRequirements(){
+
+    let requirements =
+        JSON.parse(
+            localStorage.getItem(
+                "bulkBuyerRequirements"
+            )
+        ) || [];
+
+
+    let container =
+        document.getElementById(
+            "requirementsContainer"
+        );
+
+
+    // Only show this buyer's requirements
+
+    let myRequirements =
+        requirements.filter(
+            function(requirement){
+
+                return (
+                    requirement.buyerId ==
+                    buyer.id
+                );
+
+            }
+        );
+
+
+    if(myRequirements.length === 0){
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                You have not posted
+                any requirements yet.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    myRequirements.forEach(
+        function(requirement){
+
+            container.innerHTML += `
+
+                <div class="requirement-card">
+
+                    <h3>
+                        🌾 ${
+                            requirement.cropNeeded ||
+                            "Crop"
+                        }
+                    </h3>
+
+                    <p>
+                        <strong>
+                            Quantity:
+                        </strong>
+                        ${
+                            requirement.quantity ||
+                            "Not Available"
+                        }
+                    </p>
+
+                    <p>
+                        <strong>
+                            Delivery Location:
+                        </strong>
+                        ${
+                            requirement.deliveryLocation ||
+                            "Not Available"
+                        }
+                    </p>
+
+                    <p>
+                        <strong>
+                            Required Date:
+                        </strong>
+                        ${
+                            requirement.deliveryDate ||
+                            "Not Available"
+                        }
+                    </p>
+
+                    <p>
+                        <strong>
+                            Details:
+                        </strong>
+                        ${
+                            requirement.requirement ||
+                            "No details provided"
+                        }
+                    </p>
+
+                    <span class="status">
+
+                        ${
+                            requirement.status ||
+                            "Open"
+                        }
+
+                    </span>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+}
+
+
+
+// =====================================================
+// LOAD FARMER INTERESTS
+// =====================================================
+
+function loadInterests(){
+
+    let interests =
+        JSON.parse(
+            localStorage.getItem(
+                "bulkBuyerInterests"
+            )
+        ) || [];
+
+
+    let container =
+        document.getElementById(
+            "interestsContainer"
+        );
+
+
+    // Only show interests for this buyer
+
+    let myInterests =
+        interests.filter(
+            function(interest){
+
+                return (
+                    interest.buyerBusinessName ===
+                    buyer.businessName
+                );
+
+            }
+        );
+
+
+    if(myInterests.length === 0){
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                No farmers have shown
+                interest in your requirements yet.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    myInterests.forEach(
+        function(interest){
+
+            container.innerHTML += `
+
+                <div class="requirement-card">
+
+                    <h3>
+                        👨‍🌾 ${
+                            interest.farmerName ||
+                            "Farmer"
+                        }
+                    </h3>
+
+                    <p>
+                        <strong>
+                            Crop:
+                        </strong>
+                        ${
+                            interest.availableCrop ||
+                            "Not Available"
+                        }
+                    </p>
+
+                    <p>
+                        <strong>
+                            Available Quantity:
+                        </strong>
+                        ${
+                            interest.availableQuantity ||
+                            "Not Available"
+                        }
+                    </p>
+
+                    <p>
+                        <strong>
+                            Expected Delivery:
+                        </strong>
+                        ${
+                            interest.deliveryDate ||
+                            "Not Available"
+                        }
+                    </p>
+
+                    <p>
+                        <strong>
+                            Message:
+                        </strong>
+                        ${
+                            interest.message ||
+                            "No message"
+                        }
+                    </p>
+
+                    <span class="status">
+
+                        ${
+                            interest.status ||
+                            "Pending"
+                        }
+
+                    </span>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+}
+
+
+
+// =====================================================
+// LOGOUT
+// =====================================================
+
+function logout(event){
+
+    event.preventDefault();
+
+
+    localStorage.removeItem(
+        "currentBulkBuyer"
+    );
+
+
+    localStorage.removeItem(
+        "userType"
+    );
+
+
+    alert(
+        "Logged Out Successfully!"
+    );
+
+
+    window.location.href =
+        "final.html";
+
+}
+
+
+
+// =====================================================
+// LOAD DATA
+// =====================================================
+
+if(buyer){
+
+    loadRequirements();
+
+    loadInterests();
+
+}
+
+</script>
+
+
+</body>
+
+</html>

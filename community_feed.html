@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FarmXT Community Feed</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    padding:30px;
+    background:linear-gradient(135deg,#14001f,#2d014d,#4b0082,#6a0dad);
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    text-align:center;
+}
+
+.logo{
+    width:120px;
+    height:120px;
+    object-fit:contain;
+    border-radius:50%;
+    background:white;
+    padding:8px;
+    border:3px solid #c084fc;
+    box-shadow:0 0 25px #a855f7;
+    margin-bottom:20px;
+}
+
+h1{
+    color:white;
+    font-size:38px;
+    margin-bottom:30px;
+}
+
+h2{
+    color:#f3e8ff;
+    margin-bottom:20px;
+    text-align:left;
+}
+
+.feed-card{
+
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    border-left:5px solid #c084fc;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    margin-bottom:20px;
+
+    text-align:left;
+
+    box-shadow:0 0 25px rgba(162,89,255,0.4);
+
+}
+
+
+.feed-card strong{
+
+    color:#facc15;
+    font-size:18px;
+
+}
+
+
+.feed-card p{
+
+    color:#ead5ff;
+    font-size:16px;
+    line-height:1.6;
+    margin:10px 0;
+
+}
+
+
+.date{
+
+    color:#d8c8f0;
+    font-size:13px;
+
+}
+
+
+button{
+
+    background:linear-gradient(90deg,#7e22ce,#9333ea,#c026d3);
+
+    color:white;
+
+    border:none;
+
+    padding:10px 18px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    margin-top:10px;
+
+    transition:.3s;
+
+}
+
+
+button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 0 15px #d946ef;
+
+}
+
+
+.comment-box{
+
+    margin-top:15px;
+
+}
+
+
+.comment-box input{
+
+    width:70%;
+
+    padding:10px;
+
+    border-radius:10px;
+
+    border:none;
+
+    outline:none;
+
+    background:rgba(255,255,255,0.12);
+
+    color:white;
+
+}
+
+
+.comment-box input::placeholder{
+
+    color:#d8c8f0;
+
+}
+
+
+.back-btn{
+
+    width:250px;
+
+    padding:14px;
+
+    margin-top:30px;
+
+    font-size:16px;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<img src="logo.jpg" alt="FarmXT Logo" class="logo">
+
+
+<h1>🌾 FarmXT Community Feed</h1>
+
+
+<h2>Latest Farmer Updates</h2>
+
+
+
+<div class="feed-card">
+
+<p>
+<strong>Ramesh:</strong>
+<br>
+I have 200kg onions ready for sale. Looking for nearby buyers.
+</p>
+
+<span class="date">
+Posted: Today
+</span>
+
+<br>
+
+<button onclick="likePost(this)">
+❤️ Like
+</button>
+
+
+<div class="comment-box">
+
+<input type="text" placeholder="Write a comment">
+
+<button>
+💬 Comment
+</button>
+
+</div>
+
+</div>
+
+
+
+
+<div class="feed-card">
+
+<p>
+<strong>Suresh:</strong>
+<br>
+Tomato prices are high in Mumbai market today. Farmers can get better returns.
+</p>
+
+<span class="date">
+Posted: Yesterday
+</span>
+
+<br>
+
+<button onclick="likePost(this)">
+❤️ Like
+</button>
+
+
+<div class="comment-box">
+
+<input type="text" placeholder="Write a comment">
+
+<button>
+💬 Comment
+</button>
+
+</div>
+
+</div>
+
+
+
+
+<div class="feed-card">
+
+<p>
+<strong>Mahesh:</strong>
+<br>
+Looking for bulk buyers for potatoes. Contact me through FarmXT.
+</p>
+
+<span class="date">
+Posted: 2 days ago
+</span>
+
+<br>
+
+<button onclick="likePost(this)">
+❤️ Like
+</button>
+
+
+<div class="comment-box">
+
+<input type="text" placeholder="Write a comment">
+
+<button>
+💬 Comment
+</button>
+
+</div>
+
+</div>
+
+
+
+<button class="back-btn" onclick="window.location.href='farmer_dashboard.html'">
+
+🏠 Back to Dashboard
+
+</button>
+
+
+
+</div>
+
+
+
+<script>
+
+function likePost(button){
+
+    button.innerHTML="❤️ Liked";
+
+    button.style.background="#c026d3";
+
+}
+
+</script>
+
+
+</body>
+</html>

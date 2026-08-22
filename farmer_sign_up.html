@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Farmer Sign Up | FarmXT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:40px;
+
+    background:linear-gradient(
+        135deg,
+        #14001f,
+        #2d014d,
+        #4b0082,
+        #6a0dad
+    );
+
+}
+
+.signup-box{
+
+    width:500px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:25px;
+
+    padding:35px;
+
+    box-shadow:0 0 35px rgba(162,89,255,.5);
+
+}
+
+.logo{
+
+    display:block;
+
+    margin:auto;
+
+    width:110px;
+    height:110px;
+
+    padding:8px;
+
+    border-radius:50%;
+
+    background:white;
+
+    box-shadow:0 0 20px #a855f7;
+
+}
+
+h2{
+
+    text-align:center;
+
+    color:white;
+
+    margin:20px 0;
+
+}
+
+label{
+
+    display:block;
+
+    color:#ead5ff;
+
+    font-weight:600;
+
+    margin-top:15px;
+
+}
+
+input{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-top:8px;
+
+    border-radius:12px;
+
+    border:1px solid rgba(255,255,255,.2);
+
+    background:rgba(255,255,255,.08);
+
+    color:white;
+
+    outline:none;
+
+    font-size:15px;
+
+}
+
+input::placeholder{
+
+    color:#d8c8f0;
+
+}
+
+input:focus{
+
+    border:1px solid #d946ef;
+
+    box-shadow:0 0 15px #c026d3;
+
+}
+
+
+/* ================================
+   BUTTON
+================================ */
+
+button{
+
+    width:100%;
+
+    margin-top:25px;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:linear-gradient(
+        90deg,
+        #7e22ce,
+        #9333ea,
+        #c026d3
+    );
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 0 20px #d946ef;
+
+}
+
+button:disabled{
+
+    opacity:0.6;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+    box-shadow:none;
+
+}
+
+
+/* ================================
+   AADHAAR SECTION
+================================ */
+
+.aadhaar-section{
+
+    margin-top:25px;
+
+    padding:20px;
+
+    border:1px solid rgba(255,255,255,.18);
+
+    border-radius:15px;
+
+    background:rgba(0,0,0,.12);
+
+}
+
+.aadhaar-section h3{
+
+    color:#facc15;
+
+    margin-bottom:5px;
+
+}
+
+.demo-note{
+
+    color:#d8c8f0;
+
+    font-size:13px;
+
+    margin-bottom:10px;
+
+}
+
+.otp-button{
+
+    margin-top:15px;
+
+    padding:12px;
+
+    font-size:15px;
+
+    background:linear-gradient(
+        90deg,
+        #f59e0b,
+        #facc15
+    );
+
+    color:#35104d;
+
+}
+
+.otp-button:hover{
+
+    box-shadow:0 0 20px #facc15;
+
+}
+
+.aadhaar-status{
+
+    margin-top:12px;
+
+    color:#facc15;
+
+    font-size:14px;
+
+}
+
+
+/* ================================
+   RATION CARD TYPE
+================================ */
+
+.ration-type-section{
+
+    margin-top:25px;
+
+    padding:20px;
+
+    border:1px solid rgba(255,255,255,.18);
+
+    border-radius:15px;
+
+    background:rgba(0,0,0,.12);
+
+}
+
+.ration-options{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:12px;
+
+}
+
+.ration-option{
+
+    flex:1;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:14px;
+
+    margin:0;
+
+    border:1px solid rgba(255,255,255,.2);
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.06);
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+.ration-option input{
+
+    width:auto;
+
+    margin:0;
+
+}
+
+.pink-card{
+
+    width:20px;
+
+    height:20px;
+
+    border-radius:4px;
+
+    background:#f9a8d4;
+
+}
+
+.white-card{
+
+    width:20px;
+
+    height:20px;
+
+    border-radius:4px;
+
+    background:white;
+
+}
+
+
+/* ================================
+   RATION CARD PHOTO
+================================ */
+
+.upload-section{
+
+    margin-top:25px;
+
+    padding:20px;
+
+    border:1px solid rgba(255,255,255,.18);
+
+    border-radius:15px;
+
+    background:rgba(0,0,0,.12);
+
+}
+
+.upload-section input[type="file"]{
+
+    background:rgba(255,255,255,.08);
+
+    color:white;
+
+    padding:12px;
+
+}
+
+.upload-note{
+
+    margin-top:8px;
+
+    color:#d8c8f0;
+
+    font-size:13px;
+
+}
+
+
+/* ================================
+   LINKS
+================================ */
+
+.links{
+
+    text-align:center;
+
+    margin-top:25px;
+
+    line-height:35px;
+
+}
+
+.links a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+.links a:hover{
+
+    color:#facc15;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="signup-box">
+
+
+<img src="logo.jpg" class="logo">
+
+
+<h2>👨‍🌾 Farmer Sign Up</h2>
+
+
+<form id="signupForm">
+
+
+<!-- FULL NAME -->
+
+<label>Full Name</label>
+
+<input
+    type="text"
+    id="farmerName"
+    placeholder="Enter Full Name"
+    required
+>
+
+
+<!-- MOBILE -->
+
+<label>Mobile Number</label>
+
+<input
+    type="tel"
+    id="mobile"
+    maxlength="10"
+    inputmode="numeric"
+    placeholder="Enter Mobile Number"
+    required
+>
+
+
+<!-- VILLAGE -->
+
+<label>Village / City</label>
+
+<input
+    type="text"
+    id="village"
+    placeholder="Enter Village or City"
+    required
+>
+
+
+<!-- ================================
+     RATION CARD TYPE
+================================ -->
+
+<div class="ration-type-section">
+
+    <label>Ration Card Type</label>
+
+    <div class="ration-options">
+
+
+        <label class="ration-option">
+
+            <input
+                type="radio"
+                name="rationType"
+                value="Pink Ration Card"
+                required
+            >
+
+            <span class="pink-card"></span>
+
+            🩷 Pink Ration Card
+
+        </label>
+
+
+        <label class="ration-option">
+
+            <input
+                type="radio"
+                name="rationType"
+                value="White Ration Card"
+            >
+
+            <span class="white-card"></span>
+
+            ⚪ White Ration Card
+
+        </label>
+
+
+    </div>
+
+</div>
+
+
+<!-- ================================
+     RATION CARD PHOTO
+================================ -->
+
+<div class="upload-section">
+
+    <label>Upload Ration Card Photo</label>
+
+    <input
+        type="file"
+        id="rationPhoto"
+        accept="image/*"
+        required
+    >
+
+    <p class="upload-note">
+
+        Upload a clear photo of your ration card.
+
+    </p>
+
+</div>
+
+
+<!-- ================================
+     AADHAAR VERIFICATION
+================================ -->
+
+<div class="aadhaar-section">
+
+
+    <h3>🪪 Aadhaar Authentication</h3>
+
+
+    <p class="demo-note">
+
+        Demo Verification Only
+
+    </p>
+
+
+    <label>Aadhaar Number</label>
+
+
+    <input
+        type="text"
+        id="aadhaar"
+        maxlength="12"
+        inputmode="numeric"
+        placeholder="Enter 12-digit Aadhaar Number"
+    >
+
+
+    <button
+        type="button"
+        id="sendAadhaarOtp"
+        class="otp-button"
+    >
+
+        Send Demo OTP
+
+    </button>
+
+
+    <div
+        id="otpSection"
+        style="display:none;"
+    >
+
+
+        <label>Enter OTP</label>
+
+
+        <input
+            type="text"
+            id="aadhaarOtp"
+            maxlength="6"
+            inputmode="numeric"
+            placeholder="Enter 6-digit OTP"
+        >
+
+
+        <button
+            type="button"
+            id="verifyAadhaar"
+            class="otp-button"
+        >
+
+            Verify Aadhaar
+
+        </button>
+
+
+    </div>
+
+
+    <p
+        id="aadhaarStatus"
+        class="aadhaar-status"
+    >
+
+        Aadhaar verification is required.
+
+    </p>
+
+
+</div>
+
+
+<!-- REGISTER -->
+
+<button type="submit">
+
+    Register
+
+</button>
+
+
+</form>
+
+
+<div class="links">
+
+
+<p>
+
+    Already have an account?
+
+    <a href="farmer_login.html">
+
+        Login
+
+    </a>
+
+</p>
+
+
+<p>
+
+    <a href="final.html">
+
+        🏠 Back to Home
+
+    </a>
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+<script>
+
+
+/* ================================
+   VARIABLES
+================================ */
+
+let aadhaarVerified = false;
+
+let generatedAadhaarOTP = "";
+
+
+/* ================================
+   AADHAAR INPUT
+================================ */
+
+document
+.getElementById("aadhaar")
+.addEventListener("input", function(){
+
+    this.value =
+        this.value.replace(/\D/g, "");
+
+    aadhaarVerified = false;
+
+    document.getElementById("aadhaarStatus").innerHTML =
+        "Aadhaar verification is required.";
+
+    document.getElementById("aadhaarStatus").style.color =
+        "#facc15";
+
+});
+
+
+/* ================================
+   SEND DEMO AADHAAR OTP
+================================ */
+
+document
+.getElementById("sendAadhaarOtp")
+.addEventListener("click", function(){
+
+
+    const aadhaar =
+        document
+        .getElementById("aadhaar")
+        .value
+        .trim();
+
+
+    if(!/^\d{12}$/.test(aadhaar)){
+
+        alert(
+            "Please enter a valid 12-digit Aadhaar number."
+        );
+
+        return;
+
+    }
+
+
+    /* Generate Demo OTP */
+
+    generatedAadhaarOTP =
+        Math.floor(
+            100000 +
+            Math.random() * 900000
+        ).toString();
+
+
+    /* DEMO ONLY */
+
+    alert(
+        "Demo Aadhaar OTP: " +
+        generatedAadhaarOTP
+    );
+
+
+    /* Show OTP */
+
+    document
+    .getElementById("otpSection")
+    .style.display =
+        "block";
+
+
+    document
+    .getElementById("aadhaarStatus")
+    .innerHTML =
+        "📩 Demo OTP sent. Please enter the OTP.";
+
+    document
+    .getElementById("aadhaarStatus")
+    .style.color =
+        "#facc15";
+
+});
+
+
+/* ================================
+   VERIFY AADHAAR OTP
+================================ */
+
+document
+.getElementById("verifyAadhaar")
+.addEventListener("click", function(){
+
+
+    const enteredOTP =
+        document
+        .getElementById("aadhaarOtp")
+        .value
+        .trim();
+
+
+    if(!/^\d{6}$/.test(enteredOTP)){
+
+        alert(
+            "Please enter the 6-digit OTP."
+        );
+
+        return;
+
+    }
+
+
+    if(enteredOTP === generatedAadhaarOTP){
+
+        aadhaarVerified = true;
+
+
+        document
+        .getElementById("aadhaarStatus")
+        .innerHTML =
+            "✅ Aadhaar Demo Verification Successful — You can now register.";
+
+
+        document
+        .getElementById("aadhaarStatus")
+        .style.color =
+            "#86efac";
+
+
+        /* Disable Aadhaar fields */
+
+        document
+        .getElementById("aadhaar")
+        .disabled = true;
+
+
+        document
+        .getElementById("sendAadhaarOtp")
+        .disabled = true;
+
+
+        document
+        .getElementById("verifyAadhaar")
+        .disabled = true;
+
+
+        document
+        .getElementById("aadhaarOtp")
+        .disabled = true;
+
+
+        /* Hide OTP */
+
+        document
+        .getElementById("otpSection")
+        .style.display =
+            "none";
+
+
+        alert(
+            "Aadhaar Demo Verification Successful!"
+        );
+
+
+    }else{
+
+
+        aadhaarVerified = false;
+
+
+        document
+        .getElementById("aadhaarStatus")
+        .innerHTML =
+            "❌ Invalid OTP. Please try again.";
+
+
+        document
+        .getElementById("aadhaarStatus")
+        .style.color =
+            "#ffb4b4";
+
+
+        alert(
+            "Invalid OTP!"
+        );
+
+    }
+
+});
+
+
+/* ================================
+   REGISTER FARMER
+================================ */
+
+document
+.getElementById("signupForm")
+.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+
+    /* Get values */
+
+    const farmerName =
+        document
+        .getElementById("farmerName")
+        .value
+        .trim();
+
+
+    const mobile =
+        document
+        .getElementById("mobile")
+        .value
+        .trim();
+
+
+    const village =
+        document
+        .getElementById("village")
+        .value
+        .trim();
+
+
+    const rationType =
+        document.querySelector(
+            'input[name="rationType"]:checked'
+        );
+
+
+    const rationPhoto =
+        document.getElementById("rationPhoto");
+
+
+    /* Validate Name */
+
+    if(farmerName === ""){
+
+        alert(
+            "Please enter the farmer name."
+        );
+
+        return;
+
+    }
+
+
+    /* Validate Mobile */
+
+    if(!/^\d{10}$/.test(mobile)){
+
+        alert(
+            "Please enter a valid 10-digit mobile number."
+        );
+
+        return;
+
+    }
+
+
+    /* Validate Village */
+
+    if(village === ""){
+
+        alert(
+            "Please enter Village / City."
+        );
+
+        return;
+
+    }
+
+
+    /* Validate Ration Card Type */
+
+    if(!rationType){
+
+        alert(
+            "Please select your Ration Card Type."
+        );
+
+        return;
+
+    }
+
+
+    /* Validate Ration Card Photo */
+
+    if(!rationPhoto.files.length){
+
+        alert(
+            "Please upload your Ration Card photo."
+        );
+
+        return;
+
+    }
+
+
+    /* Aadhaar Verification */
+
+    if(!aadhaarVerified){
+
+        alert(
+            "Please complete Aadhaar Demo Verification before registration."
+        );
+
+        return;
+
+    }
+
+
+    /* Get Farmers */
+
+    let farmers =
+        JSON.parse(
+            localStorage.getItem("farmxtFarmers")
+        ) || [];
+
+
+    /* Check Duplicate Mobile */
+
+    const exists =
+        farmers.some(
+            farmer =>
+                farmer.mobile === mobile
+        );
+
+
+    if(exists){
+
+        alert(
+            "This mobile number is already registered. Please login."
+        );
+
+        return;
+
+    }
+
+
+    /* ================================
+       CREATE FARMER
+    ================================ */
+
+    const farmer = {
+
+        id:
+            "FARMER_" + Date.now(),
+
+        name:
+            farmerName,
+
+        mobile:
+            mobile,
+
+        village:
+            village,
+
+        rationType:
+            rationType.value,
+
+        rationCardPhoto:
+            rationPhoto.files[0].name,
+
+        aadhaarVerified:
+            true
+
+    };
+
+
+    /* Add Farmer */
+
+    farmers.push(farmer);
+
+
+    /* Save Farmers */
+
+    localStorage.setItem(
+        "farmxtFarmers",
+        JSON.stringify(farmers)
+    );
+
+
+    /* Success */
+
+    alert(
+        "Farmer Registration Successful!"
+    );
+
+
+    /* Go to Login */
+
+    window.location.href =
+        "farmer_login.html";
+
+});
+
+</script>
+
+
+</body>
+
+</html>
